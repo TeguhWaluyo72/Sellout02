@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- Membuat View Tree/List Course -->
+    <record id="sellout_upload_tree" model="ir.ui.view">
+      <field name="name">sellout.upload.tree</field>
+      <field name="model">sellout.upload</field>
+      <field name="arch" type="xml">
+        <list string="Upload">
+            <field name="name"/>
+            <field name="description"/>
+            <field name="filename"/>
+            <field name="company_id" groups="base.group_multi_company"/>
+            <field name="state" widget="statusbar" />
+        </list>
+      </field>
+    </record>
+
+
+    <!-- model.name form view -->
+    <record id="sellout_upload_form" model="ir.ui.view">
+      <field name="name">sellout.upload.form</field>
+      <field name="model">sellout.upload</field>
+      <field name="arch" type="xml">
+        <form string="Upload Transaksi" class="o_sale_order">
+          <header>
+              <button name="action_upload"   string="Upload" type="object" class="btn-primary"  invisible="state in ('post','done','cancel')" 
+                      confirm="Upload Data Saleout?"
+              />
+              <button name="action_confirm"  string="Post" type="object" class="btn-primary" invisible="state in ('cancel','post')" 
+                      confirm="Posting Data Saleout?"
+               />
+              <button name="action_draft"    type="object" class="btn-primary" string="Set to Draft" invisible="state in ('draft','done','cancel')" 
+                      confirm="Reset to Draft?"
+               />
+              <button name="action_done"     type="object" class="btn-primary" string="Done" invisible="state in ('draft','cancel')"   
+                      confirm="Unlock/Lock Data?"
+               />
+              <button name="action_cancel"   type="object" string="Cancel"  invisible="state in ( 'done' )"  
+                      confirm="Delete Data ?"
+               />
+              <field name="state" widget="statusbar" statusbar_visible="draft,upload,posted,locked"/>          
+          </header>
+          <sheet>
+              <group>
+                  <field name="name"/>
+                  <field name="description"/>
+                  <field name="company_id" optional="show" groups="base.group_multi_company"/>
+              </group>
+              <group>
+                  <field name="filename" invisible="1"/>
+                  <field name="import_file" widget="binary" filename="filename" string="File"/>                
+              </group>
+              <notebook>
+                <page string="Fakturs" >
+                  <group>
+                      <field name="faktur_lines" mode="list,kanban" nolabel="1">
+                        <list name="faktur_lines" editable="top">
+                            <field name="tanggal"/>
+                            <field name="no_faktur"/>
+                            <field name="kode_ctm"/>
+                            <field name="nama_ctm"/>
+                            <field name="kode_sls"/>
+                            <field name="nama_sls"/>
+                            <field name="kode_brg"/>
+                            <field name="nama_brg"/>
+                            <field name="qty_jual"/>
+                            <field name="a_rp_jl"/>
+                        </list>
+                        <form name="faktur_lines">
+                            <group readonly="1"> 
+                              <field name="tanggal"/>
+                              <field name="no_faktur"/>
+                              <field name="kode_ctm"/>
+                              <field name="nama_ctm"/>
+                              <field name="kode_sls"/>
+                              <field name="nama_sls"/>
+                              <field name="kode_brg"/>
+                              <field name="nama_brg"/>
+                              <field name="qty_jual"/>
+                              <field name="a_rp_jl"/>
+                            </group>
+                        </form>
+                      </field>
+                  </group>
+                </page>
+                <page string="Salesman">
+                    <field name="salesman_lines" mode="list,kanban" nolabel="1" readonly="1">
+                        <list name="salesman_lines" editable="top">
+                              <field name="kode_sls" readonly="1"/>
+                              <field name="nama_sls" readonly="1"/>
+                              <field name="salesman_id" string="Salesman"/>
+                        </list>
+                        <form name="salesman_lines">
+                            <group readonly="1">  
+                                <field name="kode_sls"/>
+                                <field name="nama_sls"/>
+                                <field name="salesman_id" string="Link Salesman"/>
+                            </group>
+                        </form>                    
+                    </field>
+                </page>                
+                <page string="Pelanggan">
+                    <field name="customer_lines" mode="list,kanban" nolabel="1"  readonly="1">
+                        <list name="customer_lines" editable="top">
+                              <field name="kode_ctm" readonly="1"/>
+                              <field name="nama_ctm" readonly="1"/>
+                              <field name="alamat" readonly="1"/>
+                              <field name="kelom_cust" readonly="1"/>
+                              <field name="customer_id" string="Link Pelanggan"/>
+                        </list>
+                        <form name="customer_lines">
+                            <group> 
+                                <field name="kode_ctm" readonly="1"/>
+                                <field name="nama_ctm" readonly="1"/>
+                                <field name="alamat" readonly="1"/>
+                                <field name="kelom_cust" readonly="1"/>
+                                <field name="customer_id" string="Link Pelanggan"/>
+                            </group>
+                        </form>                    
+                    </field>
+                </page>
+
+  
+                <page string="Barang">
+                    <field name="barang_lines" mode="list,kanban" nolabel="1"  readonly="1">
+                        <list name="barang_lines" editable="top">
+                              <field name="kode_brg" readonly="1"/>
+                              <field name="nama_brg" readonly="1"/>
+                              <field name="barang_id" string="Link Product"/>
+                        </list>
+                        <form name="barang_lines">
+                            <group> 
+                                <field name="kode_brg" readonly="1"/>
+                                <field name="nama_brg" readonly="1"/>
+                                <field name="barang_id" string="Link Product"/>
+                            </group>
+                        </form>                    
+                    </field>
+                </page>
+                <page string="Wilayah">
+                    <field name="wilayah_lines" mode="list,kanban" nolabel="1"  readonly="1">
+                        <list name="wilayah_lines" editable="top">
+                              <field name="kode_wilay" readonly="1"/>
+                              <field name="nama_wilay" readonly="1"/>
+                              <field name="district_id" />
+                        </list>
+                        <form name="wilayah_lines">
+                            <group> 
+                                <field name="kode_wilay"/>
+                                <field name="nama_wilay"/>
+                                <field name="district_id" string="Link Kota/Kabupaten"/>
+                            </group>
+                        </form>                    
+                    </field>
+                </page>
+
+              </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- model.name action window -->
+    <record id="sellout_upload_action" model="ir.actions.act_window" >
+      <field name="name">Upload Faktur</field>
+      <field name="res_model">sellout.upload</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+<!--               <button name="action_upload"  string="Upload" type="object" class="btn-primary"  invisible="[('state', 'not in', ['draft','upload'])]"/>
+              <button name="action_confirm" string="Execute" type="object" class="btn-primary" invisible="[('state', 'not in', ['upload','sent'])]"/>
+-->              
+
+
+</odoo>

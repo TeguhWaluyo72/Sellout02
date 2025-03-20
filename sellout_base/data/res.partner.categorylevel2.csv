@@ -1,0 +1,8 @@
+"id","code","name","parent_id:id"
+"sellout_base._categ_2_1","WS","Wholesaler",sellout_base._categ_1_1
+"sellout_base._categ_2_2","Retail","Retail",sellout_base._categ_1_1
+"sellout_base._categ_2_3","NKA","National Key Account",sellout_base._categ_1_2
+"sellout_base._categ_2_4","MTI","Modern Trade Independent",sellout_base._categ_1_2
+"sellout_base._categ_2_5","OS","Official Store",sellout_base._categ_1_3
+"sellout_base._categ_2_6","EC","E-Commerce",sellout_base._categ_1_3
+"sellout_base._categ_2_0","INCOMPLETE","",sellout_base._categ_1_0

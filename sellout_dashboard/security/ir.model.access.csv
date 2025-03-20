@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+sale_report_user,sale.report.user,model_sale_report,sellout_base.group_sellout_user,1,0,0,0
+sale_report_editor,sale.report.editor,model_sale_report,sellout_base.group_sellout_editor,1,1,1,1
+sale_report_admin,sale.report.admin,model_sale_report,sellout_base.group_sellout_admin,1,1,1,1
+outlet_report_user,outlet.report.user,model_outlet_report,sellout_base.group_sellout_user,1,0,0,0
+outlet_report_editor,outlet.report.editor,model_outlet_report,sellout_base.group_sellout_editor,1,1,1,1
+outlet_report_admin,outlet.report.admin,model_outlet_report,sellout_base.group_sellout_admin,1,1,1,1

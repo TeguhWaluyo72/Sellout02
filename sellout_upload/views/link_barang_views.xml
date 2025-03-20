@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- res.partner.categorylevel1 tree view -->
+        <record id="link_barang_view_tree" model="ir.ui.view">
+        <field name="name">Link Barang</field>
+        <field name="model">sellout.link.barang</field>
+        <field name="arch" type="xml">
+            <list string="Link Barang">
+                <field name="company_id" optional="show" groups="base.group_multi_company"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="barang_id"/>
+            </list>
+        </field>
+        </record>
+
+        <!-- Membuat View Form Course -->
+        <!-- res.partner.categorylevel1 form view -->
+        <record id="link_barang_view_form" model="ir.ui.view">
+        <field name="name">Link Barang</field>
+        <field name="model">sellout.link.barang</field>
+        <field name="arch" type="xml">
+                <form string="Link Barang">
+                    <sheet>
+                        <group>
+                            <field name="company_id" optional="show" groups="base.group_multi_company"/>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="barang_id"/>
+                        </group>
+                    </sheet>
+                </form>
+        </field>
+        </record>
+
+        <!-- model.name search view -->
+        <record id="sellout_link_barang_view_search" model="ir.ui.view">
+            <field name="name">sellout.link.barang.view.search</field>
+            <field name="model">sellout.link.barang</field>
+            <field name="arch" type="xml">
+                <search string="Search Link Barang">
+                    <field name="name" string="Name" 
+                        filter_domain = "['|', ('code','ilike',self),('name','ilike',self)]" />
+                    <filter name="EmptyLink" string="Empyt Link" domain="[('barang_id','=',0)]" />
+<!--                <group expand="0" string="Group by">
+                        <field string="Company"  name="Company"  domain="[]" context="{'group_by': 'company_id'}" />
+                        <field string="Barang"   name="Barang"   domain="[]" context="{'group_by': 'barang_id'}"  />                        
+                    </group>
+-->                    
+                </search>
+            </field>
+        </record>            
+
+        <!-- res.partner.categorylevel1 action window -->
+        <record id="link_barang_action" model="ir.actions.act_window">
+        <field name="name">Link Barang</field>
+        <field name="res_model">sellout.link.barang</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            <!-- Add Text Here -->
+            Link Barang
+            </p>
+        </field>
+        </record>
+    </data>
+</odoo>

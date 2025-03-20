@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data >
+
+
+        <!-- Pricelist HNA -->
+        <!-- res.partner.categorylevel1 tree view -->
+        <record id="hnapricelist_view_tree" model="ir.ui.view">
+        <field name="name">sellout.hnapricelist</field>
+        <field name="model">sellout.hnapricelist</field>
+        <field name="arch" type="xml">
+            <list string="HNA Pricelist">
+                <field name="barang_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="price"/>
+            </list>
+        </field>
+        </record>
+
+        <!-- Membuat View Form Course -->
+        <!-- res.partner.industry form view -->
+        <record id="hnapricelist_view_form" model="ir.ui.view">
+        <field name="name">sellout.hnapricelist.form</field>
+        <field name="model">sellout.hnapricelist</field>
+        <field name="arch" type="xml">
+                <form string="HNA Pricelist">
+                    <sheet>
+                        <group>
+                        <field name="barang_id"/>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                        <field name="price"/>
+                        </group>
+                    </sheet>
+                </form>
+        </field>
+        </record>
+
+        <!-- res.partner.industry action window -->
+        <record id="hnapricelist_action" model="ir.actions.act_window">
+        <field name="name">HNA Pricelist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sellout.hnapricelist</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            <!-- Add Text Here -->
+                HNA Pricelist
+            </p><p>
+            <!-- More details about what a user can do with this object will be OK --> 
+            
+            </p>
+        </field>
+        </record>
+
+
+        <!-- Salesman -->
+        <!-- res.partner.categorylevel1 tree view -->
+        <record id="sellout_salesman_view_tree" model="ir.ui.view">
+        <field name="name">sellout_salesman</field>
+        <field name="model">sellout.salesman</field>
+        <field name="arch" type="xml">
+            <list string="HNA Pricelist">
+                <field name="company_id"/>
+                <field name="kode_sls"/>
+                <field name="nama_sls"/>
+            </list>
+        </field>
+        </record>
+
+        <!-- Membuat View Form Course -->
+        <!-- res.partner.industry form view -->
+        <record id="sellout_salesman_view_form" model="ir.ui.view">
+        <field name="name">sellout_salesman_form</field>
+        <field name="model">sellout.salesman</field>
+        <field name="arch" type="xml">
+                <form string="Salesman">
+                    <sheet>
+                        <group>
+                            <field name="company_id"/>
+                            <field name="kode_sls"/>
+                            <field name="nama_sls"/>
+                        </group>
+                    </sheet>
+                </form>
+        </field>
+        </record>
+
+        <!-- res.partner.industry action window -->
+        <record id="sellout_salesman_action" model="ir.actions.act_window">
+        <field name="name">Master Salesman</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sellout.salesman</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            <!-- Add Text Here -->
+                Salesman
+            </p><p>
+            <!-- More details about what a user can do with this object will be OK --> 
+            
+            </p>
+        </field>
+        </record>
+
+
+        
+
+    </data>  
+</odoo>

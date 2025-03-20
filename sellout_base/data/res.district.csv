@@ -1,0 +1,516 @@
+id,state_id:id,name,code,typ,area
+sellout_base.ct_11_001,base.state_id_ac,Aceh Selatan,11_001,kab
+sellout_base.ct_11_002,base.state_id_ac,Aceh Tenggara,11_002,kab
+sellout_base.ct_11_003,base.state_id_ac,Aceh Timur,11_003,kab
+sellout_base.ct_11_004,base.state_id_ac,Aceh Tengah,11_004,kab
+sellout_base.ct_11_005,base.state_id_ac,Aceh Barat,11_005,kab
+sellout_base.ct_11_006,base.state_id_ac,Aceh Besar,11_006,kab
+sellout_base.ct_11_007,base.state_id_ac,Pidie,11_007,kab
+sellout_base.ct_11_008,base.state_id_ac,Aceh Utara,11_008,kab
+sellout_base.ct_11_009,base.state_id_ac,Simeulue,11_009,kab
+sellout_base.ct_11_010,base.state_id_ac,Aceh Singkil,11_010,kab
+sellout_base.ct_11_011,base.state_id_ac,Bireuen,11_011,kab
+sellout_base.ct_11_012,base.state_id_ac,Aceh Barat Daya,11_012,kab
+sellout_base.ct_11_013,base.state_id_ac,Gayo Lues,11_013,kab
+sellout_base.ct_11_014,base.state_id_ac,Aceh Jaya,11_014,kab
+sellout_base.ct_11_015,base.state_id_ac,Nagan Raya,11_015,kab
+sellout_base.ct_11_016,base.state_id_ac,Aceh Tamiang,11_016,kab
+sellout_base.ct_11_017,base.state_id_ac,Bener Meriah,11_017,kab
+sellout_base.ct_11_018,base.state_id_ac,Pidie Jaya,11_018,kab
+sellout_base.ct_11_071,base.state_id_ac,Banda Aceh,11_071,kota
+sellout_base.ct_11_072,base.state_id_ac,Sabang,11_072,kota
+sellout_base.ct_11_073,base.state_id_ac,Lhokseumawe,11_073,kota
+sellout_base.ct_11_074,base.state_id_ac,Langsa,11_074,kota
+sellout_base.ct_11_075,base.state_id_ac,Subulussalam,11_075,kota
+sellout_base.ct_12_001,base.state_id_su,Tapanuli Tengah,12_001,kab
+sellout_base.ct_12_002,base.state_id_su,Tapanuli Utara,12_002,kab
+sellout_base.ct_12_003,base.state_id_su,Tapanuli Selatan,12_003,kab
+sellout_base.ct_12_004,base.state_id_su,Nias,12_004,kab
+sellout_base.ct_12_005,base.state_id_su,Langkat,12_005,kab
+sellout_base.ct_12_006,base.state_id_su,Karo,12_006,kab
+sellout_base.ct_12_007,base.state_id_su,Deli Serdang,12_007,kab
+sellout_base.ct_12_008,base.state_id_su,Simalungun,12_008,kab
+sellout_base.ct_12_009,base.state_id_su,Asahan,12_009,kab
+sellout_base.ct_12_010,base.state_id_su,Labuhanbatu,12_010,kab
+sellout_base.ct_12_011,base.state_id_su,Dairi,12_011,kab
+sellout_base.ct_12_012,base.state_id_su,Toba Samosir,12_012,kab
+sellout_base.ct_12_013,base.state_id_su,Mandailing Natal,12_013,kab
+sellout_base.ct_12_014,base.state_id_su,Nias Selatan,12_014,kab
+sellout_base.ct_12_015,base.state_id_su,Pakpak Bharat,12_015,kab
+sellout_base.ct_12_016,base.state_id_su,Humbang Hasundutan,12_016,kab
+sellout_base.ct_12_017,base.state_id_su,Samosir,12_017,kab
+sellout_base.ct_12_018,base.state_id_su,Serdang Bedagai,12_018,kab
+sellout_base.ct_12_019,base.state_id_su,Batu Bara,12_019,kab
+sellout_base.ct_12_020,base.state_id_su,Padang Lawas Utara,12_020,kab
+sellout_base.ct_12_021,base.state_id_su,Padang Lawas,12_021,kab
+sellout_base.ct_12_022,base.state_id_su,Labuhanbatu Selatan,12_022,kab
+sellout_base.ct_12_023,base.state_id_su,Labuhanbatu Utara,12_023,kab
+sellout_base.ct_12_024,base.state_id_su,Nias Utara,12_024,kab
+sellout_base.ct_12_025,base.state_id_su,Nias Barat,12_025,kab
+sellout_base.ct_12_071,base.state_id_su,Medan,12_071,kota
+sellout_base.ct_12_072,base.state_id_su,Pematangsiantar,12_072,kota
+sellout_base.ct_12_073,base.state_id_su,Sibolga,12_073,kota
+sellout_base.ct_12_074,base.state_id_su,Tanjung Balai,12_074,kota
+sellout_base.ct_12_075,base.state_id_su,Binjai,12_075,kota
+sellout_base.ct_12_076,base.state_id_su,Tebing Tinggi,12_076,kota
+sellout_base.ct_12_077,base.state_id_su,Padangsidimpuan,12_077,kota
+sellout_base.ct_12_078,base.state_id_su,Gunungsitoli,12_078,kota
+sellout_base.ct_13_001,base.state_id_sb,Pesisir Selatan,13_001,kab
+sellout_base.ct_13_002,base.state_id_sb,Solok,13_002,kab
+sellout_base.ct_13_003,base.state_id_sb,Sijunjung,13_003,kab
+sellout_base.ct_13_004,base.state_id_sb,Tanah Datar,13_004,kab
+sellout_base.ct_13_005,base.state_id_sb,Padang Pariaman,13_005,kab
+sellout_base.ct_13_006,base.state_id_sb,Agam,13_006,kab
+sellout_base.ct_13_007,base.state_id_sb,Lima Puluh Kota,13_007,kab
+sellout_base.ct_13_008,base.state_id_sb,Pasaman,13_008,kab
+sellout_base.ct_13_009,base.state_id_sb,Kepulauan Mentawai,13_009,kab
+sellout_base.ct_13_010,base.state_id_sb,Dharmasraya,13_010,kab
+sellout_base.ct_13_011,base.state_id_sb,Solok Selatan,13_011,kab
+sellout_base.ct_13_012,base.state_id_sb,Pasaman Barat,13_012,kab
+sellout_base.ct_13_071,base.state_id_sb,Padang,13_071,kota
+sellout_base.ct_13_072,base.state_id_sb,Solok,13_072,kota
+sellout_base.ct_13_073,base.state_id_sb,Sawahlunto,13_073,kota
+sellout_base.ct_13_074,base.state_id_sb,Padang Panjang,13_074,kota
+sellout_base.ct_13_075,base.state_id_sb,Bukittinggi,13_075,kota
+sellout_base.ct_13_076,base.state_id_sb,Payakumbuh,13_076,kota
+sellout_base.ct_13_077,base.state_id_sb,Pariaman,13_077,kota
+sellout_base.ct_14_001,base.state_id_ri,Kampar,14_001,kab
+sellout_base.ct_14_002,base.state_id_ri,Indragiri Hulu,14_002,kab
+sellout_base.ct_14_003,base.state_id_ri,Bengkalis,14_003,kab
+sellout_base.ct_14_004,base.state_id_ri,Indragiri Hilir,14_004,kab
+sellout_base.ct_14_005,base.state_id_ri,Pelalawan,14_005,kab
+sellout_base.ct_14_006,base.state_id_ri,Rokan Hulu,14_006,kab
+sellout_base.ct_14_007,base.state_id_ri,Rokan Hilir,14_007,kab
+sellout_base.ct_14_008,base.state_id_ri,Siak,14_008,kab
+sellout_base.ct_14_009,base.state_id_ri,Kuantan Singingi,14_009,kab
+sellout_base.ct_14_010,base.state_id_ri,Kepulauan Meranti,14_010,kab
+sellout_base.ct_14_071,base.state_id_ri,Pekanbaru,14_071,kota
+sellout_base.ct_14_072,base.state_id_ri,Dumai,14_072,kota
+sellout_base.ct_15_001,base.state_id_ja,Kerinci,15_001,kab
+sellout_base.ct_15_002,base.state_id_ja,Merangin,15_002,kab
+sellout_base.ct_15_003,base.state_id_ja,Sarolangun,15_003,kab
+sellout_base.ct_15_004,base.state_id_ja,Batanghari,15_004,kab
+sellout_base.ct_15_005,base.state_id_ja,Muaro Jambi,15_005,kab
+sellout_base.ct_15_006,base.state_id_ja,Tanjung Jabung Barat,15_006,kab
+sellout_base.ct_15_007,base.state_id_ja,Tanjung Jabung Timur,15_007,kab
+sellout_base.ct_15_008,base.state_id_ja,Bungo,15_008,kab
+sellout_base.ct_15_009,base.state_id_ja,Tebo,15_009,kab
+sellout_base.ct_15_071,base.state_id_ja,Jambi,15_071,kota
+sellout_base.ct_15_072,base.state_id_ja,Sungai Penuh,15_072,kota
+sellout_base.ct_16_001,base.state_id_ss,Ogan Komering Ulu,16_001,kab
+sellout_base.ct_16_002,base.state_id_ss,Ogan Komering Ilir,16_002,kab
+sellout_base.ct_16_003,base.state_id_ss,Muara Enim,16_003,kab
+sellout_base.ct_16_004,base.state_id_ss,Lahat,16_004,kab
+sellout_base.ct_16_005,base.state_id_ss,Musi Rawas,16_005,kab
+sellout_base.ct_16_006,base.state_id_ss,Musi Banyuasin,16_006,kab
+sellout_base.ct_16_007,base.state_id_ss,Banyuasin,16_007,kab
+sellout_base.ct_16_008,base.state_id_ss,Ogan Komering Ulu Timur,16_008,kab
+sellout_base.ct_16_009,base.state_id_ss,Ogan Komering Ulu Selatan,16_009,kab
+sellout_base.ct_16_010,base.state_id_ss,Ogan Ilir,16_010,kab
+sellout_base.ct_16_011,base.state_id_ss,Empat Lawang,16_011,kab
+sellout_base.ct_16_012,base.state_id_ss,Penukal Abab Lematang Ilir,16_012,kab
+sellout_base.ct_16_013,base.state_id_ss,Musi Rawas Utara,16_013,kab
+sellout_base.ct_16_071,base.state_id_ss,Palembang,16_071,kota
+sellout_base.ct_16_072,base.state_id_ss,Pagar Alam,16_072,kota
+sellout_base.ct_16_073,base.state_id_ss,Lubuk Linggau,16_073,kota
+sellout_base.ct_16_074,base.state_id_ss,Prabumulih,16_074,kota
+sellout_base.ct_17_001,base.state_id_be,Bengkulu Selatan,17_001,kab
+sellout_base.ct_17_002,base.state_id_be,Rejang Lebong,17_002,kab
+sellout_base.ct_17_003,base.state_id_be,Bengkulu Utara,17_003,kab
+sellout_base.ct_17_004,base.state_id_be,Kaur,17_004,kab
+sellout_base.ct_17_005,base.state_id_be,Seluma,17_005,kab
+sellout_base.ct_17_006,base.state_id_be,Muko Muko,17_006,kab
+sellout_base.ct_17_007,base.state_id_be,Lebong,17_007,kab
+sellout_base.ct_17_008,base.state_id_be,Kepahiang,17_008,kab
+sellout_base.ct_17_009,base.state_id_be,Bengkulu Tengah,17_009,kab
+sellout_base.ct_17_071,base.state_id_be,Bengkulu,17_071,kota
+sellout_base.ct_18_001,base.state_id_la,Lampung Selatan,18_001,kab
+sellout_base.ct_18_002,base.state_id_la,Lampung Tengah,18_002,kab
+sellout_base.ct_18_003,base.state_id_la,Lampung Utara,18_003,kab
+sellout_base.ct_18_004,base.state_id_la,Lampung Barat,18_004,kab
+sellout_base.ct_18_005,base.state_id_la,Tulang Bawang,18_005,kab
+sellout_base.ct_18_006,base.state_id_la,Tanggamus,18_006,kab
+sellout_base.ct_18_007,base.state_id_la,Lampung Timur,18_007,kab
+sellout_base.ct_18_008,base.state_id_la,Way Kanan,18_008,kab
+sellout_base.ct_18_009,base.state_id_la,Pesawaran,18_009,kab
+sellout_base.ct_18_010,base.state_id_la,Pringsewu,18_010,kab
+sellout_base.ct_18_011,base.state_id_la,Mesuji,18_011,kab
+sellout_base.ct_18_012,base.state_id_la,Tulang Bawang Barat,18_012,kab
+sellout_base.ct_18_013,base.state_id_la,Pesisir Barat,18_013,kab
+sellout_base.ct_18_071,base.state_id_la,Bandar Lampung,18_071,kota
+sellout_base.ct_18_072,base.state_id_la,Metro,18_072,kota
+sellout_base.ct_19_001,base.state_id_bb,Bangka,19_001,kab
+sellout_base.ct_19_002,base.state_id_bb,Belitung,19_002,kab
+sellout_base.ct_19_003,base.state_id_bb,Bangka Selatan,19_003,kab
+sellout_base.ct_19_004,base.state_id_bb,Bangka Tengah,19_004,kab
+sellout_base.ct_19_005,base.state_id_bb,Bangka Barat,19_005,kab
+sellout_base.ct_19_006,base.state_id_bb,Belitung Timur,19_006,kab
+sellout_base.ct_19_071,base.state_id_bb,Pangkal Pinang,19_071,kota
+sellout_base.ct_21_001,base.state_id_kr,Bintan,21_001,kab
+sellout_base.ct_21_002,base.state_id_kr,Karimun,21_002,kab
+sellout_base.ct_21_003,base.state_id_kr,Natuna,21_003,kab
+sellout_base.ct_21_004,base.state_id_kr,Lingga,21_004,kab
+sellout_base.ct_21_005,base.state_id_kr,Kepulauan Anambas,21_005,kab
+sellout_base.ct_21_071,base.state_id_kr,Batam,21_071,kota
+sellout_base.ct_21_072,base.state_id_kr,Tanjung Pinang,21_072,kota
+sellout_base.ct_31_001,base.state_id_jk,Adm. Kep. Seribu,31_001,kab
+sellout_base.ct_31_071,base.state_id_jk,Adm. Jakarta Pusat,31_071,kota
+sellout_base.ct_31_072,base.state_id_jk,Adm. Jakarta Utara,31_072,kota
+sellout_base.ct_31_073,base.state_id_jk,Adm. Jakarta Barat,31_073,kota
+sellout_base.ct_31_074,base.state_id_jk,Adm. Jakarta Selatan,31_074,kota
+sellout_base.ct_31_075,base.state_id_jk,Adm. Jakarta Timur,31_075,kota
+sellout_base.ct_32_001,base.state_id_jb,Bogor,32_001,kab
+sellout_base.ct_32_002,base.state_id_jb,Sukabumi,32_002,kab
+sellout_base.ct_32_003,base.state_id_jb,Cianjur,32_003,kab
+sellout_base.ct_32_004,base.state_id_jb,Bandung,32_004,kab
+sellout_base.ct_32_005,base.state_id_jb,Garut,32_005,kab
+sellout_base.ct_32_006,base.state_id_jb,Tasikmalaya,32_006,kab
+sellout_base.ct_32_007,base.state_id_jb,Ciamis,32_007,kab
+sellout_base.ct_32_008,base.state_id_jb,Kuningan,32_008,kab
+sellout_base.ct_32_009,base.state_id_jb,Cirebon,32_009,kab
+sellout_base.ct_32_010,base.state_id_jb,Majalengka,32_010,kab
+sellout_base.ct_32_011,base.state_id_jb,Sumedang,32_011,kab
+sellout_base.ct_32_012,base.state_id_jb,Indramayu,32_012,kab
+sellout_base.ct_32_013,base.state_id_jb,Subang,32_013,kab
+sellout_base.ct_32_014,base.state_id_jb,Purwakarta,32_014,kab
+sellout_base.ct_32_015,base.state_id_jb,Karawang,32_015,kab
+sellout_base.ct_32_016,base.state_id_jb,Bekasi,32_016,kab
+sellout_base.ct_32_017,base.state_id_jb,Bandung Barat,32_017,kab
+sellout_base.ct_32_018,base.state_id_jb,Pangandaran,32_018,kab
+sellout_base.ct_32_071,base.state_id_jb,Bogor,32_071,kota
+sellout_base.ct_32_072,base.state_id_jb,Sukabumi,32_072,kota
+sellout_base.ct_32_073,base.state_id_jb,Bandung,32_073,kota
+sellout_base.ct_32_074,base.state_id_jb,Cirebon,32_074,kota
+sellout_base.ct_32_075,base.state_id_jb,Bekasi,32_075,kota
+sellout_base.ct_32_076,base.state_id_jb,Depok,32_076,kota
+sellout_base.ct_32_077,base.state_id_jb,Cimahi,32_077,kota
+sellout_base.ct_32_078,base.state_id_jb,Tasikmalaya,32_078,kota
+sellout_base.ct_32_079,base.state_id_jb,Banjar,32_079,kota
+sellout_base.ct_33_001,base.state_id_jt,Cilacap,33_001,kab
+sellout_base.ct_33_002,base.state_id_jt,Banyumas,33_002,kab
+sellout_base.ct_33_003,base.state_id_jt,Purbalingga,33_003,kab
+sellout_base.ct_33_004,base.state_id_jt,Banjarnegara,33_004,kab
+sellout_base.ct_33_005,base.state_id_jt,Kebumen,33_005,kab
+sellout_base.ct_33_006,base.state_id_jt,Purworejo,33_006,kab
+sellout_base.ct_33_007,base.state_id_jt,Wonosobo,33_007,kab
+sellout_base.ct_33_008,base.state_id_jt,Magelang,33_008,kab
+sellout_base.ct_33_009,base.state_id_jt,Boyolali,33_009,kab
+sellout_base.ct_33_010,base.state_id_jt,Klaten,33_010,kab
+sellout_base.ct_33_011,base.state_id_jt,Sukoharjo,33_011,kab
+sellout_base.ct_33_012,base.state_id_jt,Wonogiri,33_012,kab
+sellout_base.ct_33_013,base.state_id_jt,Karanganyar,33_013,kab
+sellout_base.ct_33_014,base.state_id_jt,Sragen,33_014,kab
+sellout_base.ct_33_015,base.state_id_jt,Grobogan,33_015,kab
+sellout_base.ct_33_016,base.state_id_jt,Blora,33_016,kab
+sellout_base.ct_33_017,base.state_id_jt,Rembang,33_017,kab
+sellout_base.ct_33_018,base.state_id_jt,Pati,33_018,kab
+sellout_base.ct_33_019,base.state_id_jt,Kudus,33_019,kab
+sellout_base.ct_33_020,base.state_id_jt,Jepara,33_020,kab
+sellout_base.ct_33_021,base.state_id_jt,Demak,33_021,kab
+sellout_base.ct_33_022,base.state_id_jt,Semarang,33_022,kab
+sellout_base.ct_33_023,base.state_id_jt,Temanggung,33_023,kab
+sellout_base.ct_33_024,base.state_id_jt,Kendal,33_024,kab
+sellout_base.ct_33_025,base.state_id_jt,Batang,33_025,kab
+sellout_base.ct_33_026,base.state_id_jt,Pekalongan,33_026,kab
+sellout_base.ct_33_027,base.state_id_jt,Pemalang,33_027,kab
+sellout_base.ct_33_028,base.state_id_jt,Tegal,33_028,kab
+sellout_base.ct_33_029,base.state_id_jt,Brebes,33_029,kab
+sellout_base.ct_33_071,base.state_id_jt,Magelang,33_071,kota
+sellout_base.ct_33_072,base.state_id_jt,Surakarta,33_072,kota
+sellout_base.ct_33_073,base.state_id_jt,Salatiga,33_073,kota
+sellout_base.ct_33_074,base.state_id_jt,Semarang,33_074,kota
+sellout_base.ct_33_075,base.state_id_jt,Pekalongan,33_075,kota
+sellout_base.ct_33_076,base.state_id_jt,Tegal,33_076,kota
+sellout_base.ct_34_001,base.state_id_yo,Kulon Progo,34_001,kab
+sellout_base.ct_34_002,base.state_id_yo,Bantul,34_002,kab
+sellout_base.ct_34_003,base.state_id_yo,Gunungkidul,34_003,kab
+sellout_base.ct_34_004,base.state_id_yo,Sleman,34_004,kab
+sellout_base.ct_34_071,base.state_id_yo,Yogyakarta,34_071,kota
+sellout_base.ct_35_001,base.state_id_ji,Pacitan,35_001,kab
+sellout_base.ct_35_002,base.state_id_ji,Ponorogo,35_002,kab
+sellout_base.ct_35_003,base.state_id_ji,Trenggalek,35_003,kab
+sellout_base.ct_35_004,base.state_id_ji,Tulungagung,35_004,kab
+sellout_base.ct_35_005,base.state_id_ji,Blitar,35_005,kab
+sellout_base.ct_35_006,base.state_id_ji,Kediri,35_006,kab
+sellout_base.ct_35_007,base.state_id_ji,Malang,35_007,kab
+sellout_base.ct_35_008,base.state_id_ji,Lumajang,35_008,kab
+sellout_base.ct_35_009,base.state_id_ji,Jember,35_009,kab
+sellout_base.ct_35_010,base.state_id_ji,Banyuwangi,35_010,kab
+sellout_base.ct_35_011,base.state_id_ji,Bondowoso,35_011,kab
+sellout_base.ct_35_012,base.state_id_ji,Situbondo,35_012,kab
+sellout_base.ct_35_013,base.state_id_ji,Probolinggo,35_013,kab
+sellout_base.ct_35_014,base.state_id_ji,Pasuruan,35_014,kab
+sellout_base.ct_35_015,base.state_id_ji,Sidoarjo,35_015,kab
+sellout_base.ct_35_016,base.state_id_ji,Mojokerto,35_016,kab
+sellout_base.ct_35_017,base.state_id_ji,Jombang,35_017,kab
+sellout_base.ct_35_018,base.state_id_ji,Nganjuk,35_018,kab
+sellout_base.ct_35_019,base.state_id_ji,Madiun,35_019,kab
+sellout_base.ct_35_020,base.state_id_ji,Magetan,35_020,kab
+sellout_base.ct_35_021,base.state_id_ji,Ngawi,35_021,kab
+sellout_base.ct_35_022,base.state_id_ji,Bojonegoro,35_022,kab
+sellout_base.ct_35_023,base.state_id_ji,Tuban,35_023,kab
+sellout_base.ct_35_024,base.state_id_ji,Lamongan,35_024,kab
+sellout_base.ct_35_025,base.state_id_ji,Gresik,35_025,kab
+sellout_base.ct_35_026,base.state_id_ji,Bangkalan,35_026,kab
+sellout_base.ct_35_027,base.state_id_ji,Sampang,35_027,kab
+sellout_base.ct_35_028,base.state_id_ji,Pamekasan,35_028,kab
+sellout_base.ct_35_029,base.state_id_ji,Sumenep,35_029,kab
+sellout_base.ct_35_071,base.state_id_ji,Kediri,35_071,kota
+sellout_base.ct_35_072,base.state_id_ji,Blitar,35_072,kota
+sellout_base.ct_35_073,base.state_id_ji,Malang,35_073,kota
+sellout_base.ct_35_074,base.state_id_ji,Probolinggo,35_074,kota
+sellout_base.ct_35_075,base.state_id_ji,Pasuruan,35_075,kota
+sellout_base.ct_35_076,base.state_id_ji,Mojokerto,35_076,kota
+sellout_base.ct_35_077,base.state_id_ji,Madiun,35_077,kota
+sellout_base.ct_35_078,base.state_id_ji,Surabaya,35_078,kota
+sellout_base.ct_35_079,base.state_id_ji,Batu,35_079,kota
+sellout_base.ct_36_001,base.state_id_bt,Pandeglang,36_001,kab
+sellout_base.ct_36_002,base.state_id_bt,Lebak,36_002,kab
+sellout_base.ct_36_003,base.state_id_bt,Tangerang,36_003,kab
+sellout_base.ct_36_004,base.state_id_bt,Serang,36_004,kab
+sellout_base.ct_36_071,base.state_id_bt,Tangerang,36_071,kota
+sellout_base.ct_36_072,base.state_id_bt,Cilegon,36_072,kota
+sellout_base.ct_36_073,base.state_id_bt,Serang,36_073,kota
+sellout_base.ct_36_074,base.state_id_bt,Tangerang Selatan,36_074,kota
+sellout_base.ct_51_001,base.state_id_ba,Jembrana,51_001,kab
+sellout_base.ct_51_002,base.state_id_ba,Tabanan,51_002,kab
+sellout_base.ct_51_003,base.state_id_ba,Badung,51_003,kab
+sellout_base.ct_51_004,base.state_id_ba,Gianyar,51_004,kab
+sellout_base.ct_51_005,base.state_id_ba,Klungkung,51_005,kab
+sellout_base.ct_51_006,base.state_id_ba,Bangli,51_006,kab
+sellout_base.ct_51_007,base.state_id_ba,Karangasem,51_007,kab
+sellout_base.ct_51_008,base.state_id_ba,Buleleng,51_008,kab
+sellout_base.ct_51_071,base.state_id_ba,Denpasar,51_071,kota
+sellout_base.ct_52_001,base.state_id_nb,Lombok Barat,52_001,kab
+sellout_base.ct_52_002,base.state_id_nb,Lombok Tengah,52_002,kab
+sellout_base.ct_52_003,base.state_id_nb,Lombok Timur,52_003,kab
+sellout_base.ct_52_004,base.state_id_nb,Sumbawa,52_004,kab
+sellout_base.ct_52_005,base.state_id_nb,Dompu,52_005,kab
+sellout_base.ct_52_006,base.state_id_nb,Bima,52_006,kab
+sellout_base.ct_52_007,base.state_id_nb,Sumbawa Barat,52_007,kab
+sellout_base.ct_52_008,base.state_id_nb,Lombok Utara,52_008,kab
+sellout_base.ct_52_071,base.state_id_nb,Mataram,52_071,kota
+sellout_base.ct_52_072,base.state_id_nb,Bima,52_072,kota
+sellout_base.ct_53_001,base.state_id_nt,Kupang,53_001,kab
+sellout_base.ct_53_002,base.state_id_nt,Kab Timor Tengah Selatan,53_002,kab
+sellout_base.ct_53_003,base.state_id_nt,Timor Tengah Utara,53_003,kab
+sellout_base.ct_53_004,base.state_id_nt,Belu,53_004,kab
+sellout_base.ct_53_005,base.state_id_nt,Alor,53_005,kab
+sellout_base.ct_53_006,base.state_id_nt,Flores Timur,53_006,kab
+sellout_base.ct_53_007,base.state_id_nt,Sikka,53_007,kab
+sellout_base.ct_53_008,base.state_id_nt,Ende,53_008,kab
+sellout_base.ct_53_009,base.state_id_nt,Ngada,53_009,kab
+sellout_base.ct_53_010,base.state_id_nt,Manggarai,53_010,kab
+sellout_base.ct_53_011,base.state_id_nt,Sumba Timur,53_011,kab
+sellout_base.ct_53_012,base.state_id_nt,Sumba Barat,53_012,kab
+sellout_base.ct_53_013,base.state_id_nt,Lembata,53_013,kab
+sellout_base.ct_53_014,base.state_id_nt,Rote Ndao,53_014,kab
+sellout_base.ct_53_015,base.state_id_nt,Manggarai Barat,53_015,kab
+sellout_base.ct_53_016,base.state_id_nt,Nagekeo,53_016,kab
+sellout_base.ct_53_017,base.state_id_nt,Sumba Tengah,53_017,kab
+sellout_base.ct_53_018,base.state_id_nt,Sumba Barat Daya,53_018,kab
+sellout_base.ct_53_019,base.state_id_nt,Manggarai Timur,53_019,kab
+sellout_base.ct_53_020,base.state_id_nt,Sabu Raijua,53_020,kab
+sellout_base.ct_53_021,base.state_id_nt,Malaka,53_021,kab
+sellout_base.ct_53_071,base.state_id_nt,Kupang,53_071,kota
+sellout_base.ct_61_001,base.state_id_kb,Sambas,61_001,kab
+sellout_base.ct_61_002,base.state_id_kb,Mempawah,61_002,kab
+sellout_base.ct_61_003,base.state_id_kb,Sanggau,61_003,kab
+sellout_base.ct_61_004,base.state_id_kb,Ketapang,61_004,kab
+sellout_base.ct_61_005,base.state_id_kb,Sintang,61_005,kab
+sellout_base.ct_61_006,base.state_id_kb,Kapuas Hulu,61_006,kab
+sellout_base.ct_61_007,base.state_id_kb,Bengkayang,61_007,kab
+sellout_base.ct_61_008,base.state_id_kb,Landak,61_008,kab
+sellout_base.ct_61_009,base.state_id_kb,Sekadau,61_009,kab
+sellout_base.ct_61_010,base.state_id_kb,Melawi,61_010,kab
+sellout_base.ct_61_011,base.state_id_kb,Kayong Utara,61_011,kab
+sellout_base.ct_61_012,base.state_id_kb,Kubu Raya,61_012,kab
+sellout_base.ct_61_071,base.state_id_kb,Pontianak,61_071,kota
+sellout_base.ct_61_072,base.state_id_kb,Singkawang,61_072,kota
+sellout_base.ct_62_001,base.state_id_kt,Kotawaringin Barat,62_001,kab
+sellout_base.ct_62_002,base.state_id_kt,Kotawaringin Timur,62_002,kab
+sellout_base.ct_62_003,base.state_id_kt,Kapuas,62_003,kab
+sellout_base.ct_62_004,base.state_id_kt,Barito Selatan,62_004,kab
+sellout_base.ct_62_005,base.state_id_kt,Barito Utara,62_005,kab
+sellout_base.ct_62_006,base.state_id_kt,Katingan,62_006,kab
+sellout_base.ct_62_007,base.state_id_kt,Seruyan,62_007,kab
+sellout_base.ct_62_008,base.state_id_kt,Sukamara,62_008,kab
+sellout_base.ct_62_009,base.state_id_kt,Lamandau,62_009,kab
+sellout_base.ct_62_010,base.state_id_kt,Gunung Mas,62_010,kab
+sellout_base.ct_62_011,base.state_id_kt,Pulang Pisau,62_011,kab
+sellout_base.ct_62_012,base.state_id_kt,Murung Raya,62_012,kab
+sellout_base.ct_62_013,base.state_id_kt,Barito Timur,62_013,kab
+sellout_base.ct_62_071,base.state_id_kt,Palangkaraya,62_071,kota
+sellout_base.ct_63_001,base.state_id_ks,Tanah Laut,63_001,kab
+sellout_base.ct_63_002,base.state_id_ks,Kotabaru,63_002,kab
+sellout_base.ct_63_003,base.state_id_ks,Banjar,63_003,kab
+sellout_base.ct_63_004,base.state_id_ks,Barito Kuala,63_004,kab
+sellout_base.ct_63_005,base.state_id_ks,Tapin,63_005,kab
+sellout_base.ct_63_006,base.state_id_ks,Hulu Sungai Selatan,63_006,kab
+sellout_base.ct_63_007,base.state_id_ks,Hulu Sungai Tengah,63_007,kab
+sellout_base.ct_63_008,base.state_id_ks,Hulu Sungai Utara,63_008,kab
+sellout_base.ct_63_009,base.state_id_ks,Tabalong,63_009,kab
+sellout_base.ct_63_010,base.state_id_ks,Tanah Bumbu,63_010,kab
+sellout_base.ct_63_011,base.state_id_ks,Balangan,63_011,kab
+sellout_base.ct_63_071,base.state_id_ks,Banjarmasin,63_071,kota
+sellout_base.ct_63_072,base.state_id_ks,Banjarbaru,63_072,kota
+sellout_base.ct_64_001,base.state_id_ki,Paser,64_001,kab
+sellout_base.ct_64_002,base.state_id_ki,Kutai Kartanegara,64_002,kab
+sellout_base.ct_64_003,base.state_id_ki,Berau,64_003,kab
+sellout_base.ct_64_004,base.state_id_ki,Kutai Barat,64_004,kab
+sellout_base.ct_64_005,base.state_id_ki,Kutai Timur,64_005,kab
+sellout_base.ct_64_006,base.state_id_ki,Penajam Paser Utara,64_006,kab
+sellout_base.ct_64_007,base.state_id_ki,Mahakam Ulu,64_007,kab
+sellout_base.ct_64_071,base.state_id_ki,Balikpapan,64_071,kota
+sellout_base.ct_64_072,base.state_id_ki,Samarinda,64_072,kota
+sellout_base.ct_64_073,base.state_id_ki,Bontang,64_073,kota
+sellout_base.ct_65_001,base.state_id_ku,Bulungan,65_001,kab
+sellout_base.ct_65_002,base.state_id_ku,Malinau,65_002,kab
+sellout_base.ct_65_003,base.state_id_ku,Nunukan,65_003,kab
+sellout_base.ct_65_004,base.state_id_ku,Tana Tidung,65_004,kab
+sellout_base.ct_65_071,base.state_id_ku,Tarakan,65_071,kota
+sellout_base.ct_71_001,base.state_id_sa,Bolaang Mongondow,71_001,kab
+sellout_base.ct_71_002,base.state_id_sa,Minahasa,71_002,kab
+sellout_base.ct_71_003,base.state_id_sa,Kepulauan Sangihe,71_003,kab
+sellout_base.ct_71_004,base.state_id_sa,Kepulauan Talaud,71_004,kab
+sellout_base.ct_71_005,base.state_id_sa,Minahasa Selatan,71_005,kab
+sellout_base.ct_71_006,base.state_id_sa,Minahasa Utara,71_006,kab
+sellout_base.ct_71_007,base.state_id_sa,Minahasa Tenggara,71_007,kab
+sellout_base.ct_71_008,base.state_id_sa,Bolaang Mongondow Utara,71_008,kab
+sellout_base.ct_71_009,base.state_id_sa,Kep. Siau Tagulandang Biaro,71_009,kab
+sellout_base.ct_71_010,base.state_id_sa,Bolaang Mongondow Timur,71_010,kab
+sellout_base.ct_71_011,base.state_id_sa,Bolaang Mongondow Selatan,71_011,kab
+sellout_base.ct_71_071,base.state_id_sa,Manado,71_071,kota
+sellout_base.ct_71_072,base.state_id_sa,Bitung,71_072,kota
+sellout_base.ct_71_073,base.state_id_sa,Tomohon,71_073,kota
+sellout_base.ct_71_074,base.state_id_sa,Kotamobagu,71_074,kota
+sellout_base.ct_72_001,base.state_id_st,Banggai,72_001,kab
+sellout_base.ct_72_002,base.state_id_st,Poso,72_002,kab
+sellout_base.ct_72_003,base.state_id_st,Donggala,72_003,kab
+sellout_base.ct_72_004,base.state_id_st,Toli Toli,72_004,kab
+sellout_base.ct_72_005,base.state_id_st,Buol,72_005,kab
+sellout_base.ct_72_006,base.state_id_st,Morowali,72_006,kab
+sellout_base.ct_72_007,base.state_id_st,Banggai Kepulauan,72_007,kab
+sellout_base.ct_72_008,base.state_id_st,Parigi Moutong,72_008,kab
+sellout_base.ct_72_009,base.state_id_st,Tojo Una Una,72_009,kab
+sellout_base.ct_72_010,base.state_id_st,Sigi,72_010,kab
+sellout_base.ct_72_011,base.state_id_st,Banggai Laut,72_011,kab
+sellout_base.ct_72_012,base.state_id_st,Morowali Utara,72_012,kab
+sellout_base.ct_72_071,base.state_id_st,Palu,72_071,kota
+sellout_base.ct_73_001,base.state_id_sn,Kepulauan Selayar,73_001,kab
+sellout_base.ct_73_002,base.state_id_sn,Bulukumba,73_002,kab
+sellout_base.ct_73_003,base.state_id_sn,Bantaeng,73_003,kab
+sellout_base.ct_73_004,base.state_id_sn,Jeneponto,73_004,kab
+sellout_base.ct_73_005,base.state_id_sn,Takalar,73_005,kab
+sellout_base.ct_73_006,base.state_id_sn,Gowa,73_006,kab
+sellout_base.ct_73_007,base.state_id_sn,Sinjai,73_007,kab
+sellout_base.ct_73_008,base.state_id_sn,Bone,73_008,kab
+sellout_base.ct_73_009,base.state_id_sn,Maros,73_009,kab
+sellout_base.ct_73_010,base.state_id_sn,Pangkajene Kepulauan,73_010,kab
+sellout_base.ct_73_011,base.state_id_sn,Barru,73_011,kab
+sellout_base.ct_73_012,base.state_id_sn,Soppeng,73_012,kab
+sellout_base.ct_73_013,base.state_id_sn,Wajo,73_013,kab
+sellout_base.ct_73_014,base.state_id_sn,Sidenreng Rappang,73_014,kab
+sellout_base.ct_73_015,base.state_id_sn,Pinrang,73_015,kab
+sellout_base.ct_73_016,base.state_id_sn,Enrekang,73_016,kab
+sellout_base.ct_73_017,base.state_id_sn,Luwu,73_017,kab
+sellout_base.ct_73_018,base.state_id_sn,Tana Toraja,73_018,kab
+sellout_base.ct_73_022,base.state_id_sn,Luwu Utara,73_022,kab
+sellout_base.ct_73_024,base.state_id_sn,Luwu Timur,73_024,kab
+sellout_base.ct_73_021,base.state_id_sn,Toraja Utara,73_021,kab
+sellout_base.ct_73_071,base.state_id_sn,Makassar,73_071,kota
+sellout_base.ct_73_072,base.state_id_sn,Pare Pare,73_072,kota
+sellout_base.ct_73_073,base.state_id_sn,Palopo,73_073,kota
+sellout_base.ct_74_001,base.state_id_sg,Kolaka,74_001,kab
+sellout_base.ct_74_002,base.state_id_sg,Konawe,74_002,kab
+sellout_base.ct_74_003,base.state_id_sg,Muna,74_003,kab
+sellout_base.ct_74_004,base.state_id_sg,Buton,74_004,kab
+sellout_base.ct_74_005,base.state_id_sg,Konawe Selatan,74_005,kab
+sellout_base.ct_74_006,base.state_id_sg,Bombana,74_006,kab
+sellout_base.ct_74_007,base.state_id_sg,Wakatobi,74_007,kab
+sellout_base.ct_74_008,base.state_id_sg,Kolaka Utara,74_008,kab
+sellout_base.ct_74_009,base.state_id_sg,Konawe Utara,74_009,kab
+sellout_base.ct_74_010,base.state_id_sg,Buton Utara,74_010,kab
+sellout_base.ct_74_011,base.state_id_sg,Kolaka Timur,74_011,kab
+sellout_base.ct_74_012,base.state_id_sg,Konawe Kepulauan,74_012,kab
+sellout_base.ct_74_013,base.state_id_sg,Muna Barat,74_013,kab
+sellout_base.ct_74_014,base.state_id_sg,Buton Tengah,74_014,kab
+sellout_base.ct_74_015,base.state_id_sg,Buton Selatan,74_015,kab
+sellout_base.ct_74_071,base.state_id_sg,Kendari,74_071,kota
+sellout_base.ct_74_072,base.state_id_sg,Bau Bau,74_072,kota
+sellout_base.ct_75_001,base.state_id_go,Gorontalo,75_001,kab
+sellout_base.ct_75_002,base.state_id_go,Boalemo,75_002,kab
+sellout_base.ct_75_003,base.state_id_go,Bone Bolango,75_003,kab
+sellout_base.ct_75_004,base.state_id_go,Pahuwato,75_004,kab
+sellout_base.ct_75_005,base.state_id_go,Gorontalo Utara,75_005,kab
+sellout_base.ct_75_071,base.state_id_go,Gorontalo,75_071,kota
+sellout_base.ct_76_001,base.state_id_sr,Pasangkayu,76_001,kab
+sellout_base.ct_76_002,base.state_id_sr,Mamuju,76_002,kab
+sellout_base.ct_76_003,base.state_id_sr,Mamasa,76_003,kab
+sellout_base.ct_76_004,base.state_id_sr,Polewali Mandar,76_004,kab
+sellout_base.ct_76_005,base.state_id_sr,Majene,76_005,kab
+sellout_base.ct_76_006,base.state_id_sr,Mamuju Tengah,76_006,kab
+sellout_base.ct_81_001,base.state_id_ma,Maluku Tengah,81_001,kab
+sellout_base.ct_81_002,base.state_id_ma,Maluku Tenggara,81_002,kab
+sellout_base.ct_81_003,base.state_id_ma,Kepulauan Tanimbar,81_003,kab
+sellout_base.ct_81_004,base.state_id_ma,Buru,81_004,kab
+sellout_base.ct_81_005,base.state_id_ma,Seram Bagian Timur,81_005,kab
+sellout_base.ct_81_006,base.state_id_ma,Seram Bagian Barat,81_006,kab
+sellout_base.ct_81_007,base.state_id_ma,Kepulauan Aru,81_007,kab
+sellout_base.ct_81_008,base.state_id_ma,Maluku Barat Daya,81_008,kab
+sellout_base.ct_81_009,base.state_id_ma,Buru Selatan,81_009,kab
+sellout_base.ct_81_071,base.state_id_ma,Ambon,81_071,kota
+sellout_base.ct_81_072,base.state_id_ma,Tual,81_072,kota
+sellout_base.ct_82_001,base.state_id_mu,Halmahera Barat,82_001,kab
+sellout_base.ct_82_002,base.state_id_mu,Halmahera Tengah,82_002,kab
+sellout_base.ct_82_003,base.state_id_mu,Halmahera Utara,82_003,kab
+sellout_base.ct_82_004,base.state_id_mu,Halmahera Selatan,82_004,kab
+sellout_base.ct_82_005,base.state_id_mu,Kepulauan Sula,82_005,kab
+sellout_base.ct_82_006,base.state_id_mu,Halmahera Timur,82_006,kab
+sellout_base.ct_82_007,base.state_id_mu,Pulau Morotai,82_007,kab
+sellout_base.ct_82_008,base.state_id_mu,Pulau Taliabu,82_008,kab
+sellout_base.ct_82_071,base.state_id_mu,Ternate,82_071,kota
+sellout_base.ct_82_072,base.state_id_mu,Tidore Kepulauan,82_072,kota
+sellout_base.ct_91_001,base.state_id_pa,Merauke,91_001,kab
+sellout_base.ct_91_002,base.state_id_pa,Jayawijaya,91_002,kab
+sellout_base.ct_91_003,base.state_id_pa,Jayapura,91_003,kab
+sellout_base.ct_91_004,base.state_id_pa,Nabire,91_004,kab
+sellout_base.ct_91_005,base.state_id_pa,Kepulauan Yapen,91_005,kab
+sellout_base.ct_91_006,base.state_id_pa,Biak Numfor,91_006,kab
+sellout_base.ct_91_007,base.state_id_pa,Puncak Jaya,91_007,kab
+sellout_base.ct_91_008,base.state_id_pa,Paniai,91_008,kab
+sellout_base.ct_91_009,base.state_id_pa,Mimika,91_009,kab
+sellout_base.ct_91_010,base.state_id_pa,Sarmi,91_010,kab
+sellout_base.ct_91_011,base.state_id_pa,Keerom,91_011,kab
+sellout_base.ct_91_012,base.state_id_pa,Pegunungan Bintang,91_012,kab
+sellout_base.ct_91_013,base.state_id_pa,Yahukimo,91_013,kab
+sellout_base.ct_91_014,base.state_id_pa,Tolikara,91_014,kab
+sellout_base.ct_91_015,base.state_id_pa,Waropen,91_015,kab
+sellout_base.ct_91_016,base.state_id_pa,Boven Digoel,91_016,kab
+sellout_base.ct_91_017,base.state_id_pa,Mappi,91_017,kab
+sellout_base.ct_91_018,base.state_id_pa,Asmat,91_018,kab
+sellout_base.ct_91_019,base.state_id_pa,Supiori,91_019,kab
+sellout_base.ct_91_020,base.state_id_pa,Mamberamo Raya,91_020,kab
+sellout_base.ct_91_021,base.state_id_pa,Mamberamo Tengah,91_021,kab
+sellout_base.ct_91_022,base.state_id_pa,Yalimo,91_022,kab
+sellout_base.ct_91_023,base.state_id_pa,Lanny Jaya,91_023,kab
+sellout_base.ct_91_024,base.state_id_pa,Nduga,91_024,kab
+sellout_base.ct_91_025,base.state_id_pa,Puncak,91_025,kab
+sellout_base.ct_91_026,base.state_id_pa,Dogiyai,91_026,kab
+sellout_base.ct_91_027,base.state_id_pa,Intan Jaya,91_027,kab
+sellout_base.ct_91_028,base.state_id_pa,Deiyai,91_028,kab
+sellout_base.ct_91_071,base.state_id_pa,Jayapura,91_071,kota
+sellout_base.ct_92_001,base.state_id_pb,Sorong,92_001,kab
+sellout_base.ct_92_002,base.state_id_pb,Manokwari,92_002,kab
+sellout_base.ct_92_003,base.state_id_pb,Fak Fak,92_003,kab
+sellout_base.ct_92_004,base.state_id_pb,Sorong Selatan,92_004,kab
+sellout_base.ct_92_005,base.state_id_pb,Raja Ampat,92_005,kab
+sellout_base.ct_92_006,base.state_id_pb,Teluk Bintuni,92_006,kab
+sellout_base.ct_92_007,base.state_id_pb,Teluk Wondama,92_007,kab
+sellout_base.ct_92_008,base.state_id_pb,Kaimana,92_008,kab
+sellout_base.ct_92_009,base.state_id_pb,Tambrauw,92_009,kab
+sellout_base.ct_92_010,base.state_id_pb,Maybrat,92_010,kab
+sellout_base.ct_92_011,base.state_id_pb,Manokwari Selatan,92_011,kab
+sellout_base.ct_92_012,base.state_id_pb,Pegunungan Arfak,92_012,kab
+sellout_base.ct_92_071,base.state_id_pb,Sorong,92_071,kota
+sellout_base.ct_00_000,base.state_id_jt,INCOMPLETE,00_000,kota

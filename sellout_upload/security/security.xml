@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sellout_upload_comp_rule" model="ir.rule">
+            <field name="name">Sellout Upload multi-company</field>
+            <field name="model_id" ref="model_sellout_upload"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="sellout_link_wilayah_comp_rule" model="ir.rule">
+            <field name="name">Link Wilayah multi-company</field>
+            <field name="model_id" ref="model_sellout_link_wilayah"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="sellout_link_barang_comp_rule" model="ir.rule">
+            <field name="name">Link barang multi-company</field>
+            <field name="model_id" ref="model_sellout_link_barang"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="sellout_link_salesman_comp_rule" model="ir.rule">
+            <field name="name">Link salesman multi-company</field>
+            <field name="model_id" ref="model_sellout_link_salesman"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="sellout_link_customer_comp_rule" model="ir.rule">
+            <field name="name">Link customer multi-company</field>
+            <field name="model_id" ref="model_sellout_link_customer"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+
+
+    </data>
+</odoo>

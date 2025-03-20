@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+   <record id="view_outlet_product_search" model="ir.ui.view">
+        <field name="name">outlet.report.search</field>
+        <field name="model">outlet.report</field>
+        <field name="arch" type="xml">
+            <search string="Outlet Analysis">
+                <field name="date"/>
+                <separator/>
+                <filter name="filter_date" date="date" default_period="month"/>
+                <filter name="filter_order_date" invisible="1" string="Order Date: Last 365 Days" domain="[('date', '&gt;=', (datetime.datetime.combine(context_today() + relativedelta(days=-365), datetime.time(0,0,0))).strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                <separator/>             
+            </search>
+        </field>
+    </record>
+
+    <record id="outlet_report_view_tree" model="ir.ui.view">
+        <field name="name">outlet.report.view.list</field>
+        <field name="model">outlet.report</field>
+        <field name="arch" type="xml">
+            <list string="Sales Analysis" action="action_open_order" type="object">
+                <field name="date"/>
+                <field name="count_partner"/>
+                <field name="partner_id"/>
+                <field name="product_id" string="Product" optional="show"/>
+                <field name="company_id" optional="show" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>    
+
+
+    <record id="action_oulet_report_all" model="ir.actions.act_window">
+        <field name="name">Outlet Analysis</field>
+        <field name="res_model">outlet.report</field>
+        <field name="view_mode">graph,pivot,list,form</field>
+        <field name="view_id"></field>  <!-- force empty -->
+        <field name="search_view_id" ref="view_outlet_product_search"/>
+        <field name="domain">[]</field>        
+<!--    
+        <field name="domain">[('state', '!=', 'cancel')]</field>
+        <field name="context">{'search_default_Sales':1,'group_by':[], 'search_default_filter_order_date': 1}</field>
+        <field name="help">This report performs analysis on your quotations and sales orders. Analysis check your sales revenues and sort it by different group criteria (salesman, partner, product, etc.) Use this report to perform analysis on sales not having invoiced yet. If you want to analyse your turnover, you should use the Invoice Analysis report in the Accounting application.</field>
+-->        
+    </record>
+
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="menu_bar_sellout_upload"  name="Upload"      parent="sellout_base.menu_dashboard_sellout"  groups="base.group_user,sellout_base.group_sellout_editor" />
+    <menuitem id="menu_bar_sellout_link"    name="Link Master" parent="sellout_base.menu_dashboard_sellout"  groups="base.group_user,sellout_base.group_sellout_editor" />
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="menu_item_sellout_upload" name="Upload Faktur" parent="menu_bar_sellout_upload" action="sellout_upload_action" groups="base.group_user,sellout_base.group_sellout_editor" />
+
+    <menuitem id="menu_item_link_barang"    name="Barang"        parent="menu_bar_sellout_link"   action="link_barang_action"    sequence="20" groups="base.group_user" />
+    <menuitem id="menu_item_link_salesman"  name="Salesman"      parent="menu_bar_sellout_link"   action="link_salesman_action"  sequence="30" groups="base.group_user" />
+    <menuitem id="menu_item_link_customer" name="customer"       parent="menu_bar_sellout_link"   action="link_customer_action"  sequence="40" groups="base.group_user" />
+    <menuitem id="menu_item_link_wilayah"   name="Wilayah"       parent="menu_bar_sellout_link"   action="link_wilayah_action"   sequence="20" groups="base.group_user" />
+
+</odoo>

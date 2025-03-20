@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="sellout_base.menu_dashboard_sellout"   name="Selling Out" groups="base.group_user" />
+    <menuitem id="menu_bar_settings"            name="Settings"   parent="sellout_base.menu_dashboard_sellout" sequence="90" groups="base.group_user,sellout_base.group_sellout_editor,sellout_base.group_sellout_admin" />
+
+    <menuitem id="menu_settings_wilayah"        name="Wilayah"    parent="menu_bar_settings" sequence="10" groups="base.group_user" />
+    <menuitem id="menu_settings_partner"        name="Partner"    parent="menu_bar_settings" sequence="20" groups="base.group_user" />
+    <menuitem id="menu_settings_others"         name="Others"     parent="menu_bar_settings" sequence="30" groups="base.group_user" />
+
+    <menuitem id="menu_item_settings_propinsi"  name="Provinsi" parent="menu_settings_wilayah" action="wilayah_propinsi_action" groups="base.group_user"/>
+    <menuitem id="menu_item_settings_kota"      name="Kota" parent="menu_settings_wilayah" action="wilayah_district_action" groups="base.group_user" />
+    <menuitem id="menu_item_settings_kecamatan" name="Kecamatan" parent="menu_settings_wilayah" action="base.action_country_state" groups="base.group_user" />
+    <menuitem id="menu_item_settings_desa"      name="Desa" parent="menu_settings_wilayah" action="base.action_country_state" groups="base.group_user" />
+    
+    <menuitem id="menu_settings_partner"        name="Partner" parent="menu_bar_settings" sequence="20"  groups="base.group_user" />
+    <menuitem id="menu_partner_category1"       name="Category Pelanggan Level 1" parent="menu_settings_partner" action="sellout_base.partner_categorylevel1_action" sequence="10"  groups="base.group_user"/>
+    <menuitem id="menu_item_settings_category2" name="Category Pelanggan Level 2" parent="menu_settings_partner" action="sellout_base.partner_categorylevel2_action" sequence="20"  groups="base.group_user"/>
+    <menuitem id="menu_item_settings_industry"  name="Category Pelanggan "        parent="menu_settings_partner" action="sellout_base.partner_industry_action" sequence="30"  groups="base.group_user"/>
+
+    <menuitem id="menu_others_saleman"          name="Salesman "                  parent="menu_settings_others"  action="sellout_base.sellout_salesman_action" sequence="30"  groups="base.group_user"/>
+    <menuitem id="menu_others_pricelist"        name="HNA Pricelist "             parent="menu_settings_others"  action="sellout_base.hnapricelist_action" sequence="30"  groups="base.group_user"/>
+
+</odoo>
+
+

@@ -1,0 +1,33 @@
+https://github.com/nathanbangwa243/learning-odoo-17 
+https://github.com/nathanbangwa243?tab=repositories
+
+/etc/odoo-server.conf 
+[options]
+admin_passwd = Dragon168#
+db_host = False
+db_port = 5432
+db_user = odoo14
+db_password = odoo
+logfile = /var/log/odoo/odoo-server.log
+addons_path = /opt/odoo/odoo14/addons,/opt/odoo/odoo14/custom-addons/dragon/custom-addons,/opt/odoo/odoo14/custom-addons/dragon/enterprise-addons
+xmlrpc_port = 8016
+http_port = 8016
+proxy_mode = True
+longpolling_port = 8075
+limit_time_real_cron = -1
+
+# sesuai rumus
+# error lebih karena koneksi postgresql
+limit_memory_hard = 12884901888
+limit_memory_soft = 10737418240
+limit_request = 8192
+limit_time_cpu = 60000
+limit_time_real = 120000
+max_cron_threads = 1
+
+# 8 * 2, and 1 for cron
+workers = 16
+# # #
+ubuntu@ip-10-0-1-242:~$
+
+

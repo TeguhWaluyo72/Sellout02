@@ -1,0 +1,126 @@
+<odoo>
+  <data>
+
+    <!-- View Propinsi -->
+    
+    <record id="wilayah_propinsi_view_tree" model="ir.ui.view">
+        <field name="name">wilayah.state.tree</field>
+        <field name="model">res.country.state</field>
+        <field name="arch" type="xml">
+            <list string="Provinsi">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="country_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- res.state form view -->
+    <record id="state_view_form" model="ir.ui.view">
+      <field name="name">res.state.view.form</field>
+      <field name="model">res.country.state</field>
+      <field name="arch" type="xml">
+        <form string="Provinsi">
+          <sheet>
+            <group>
+              <!-- Add your fields here -->          
+            </group>
+              <field name="code"/>
+              <field name="name"/>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- res.state action window -->
+    <record id="wilayah_propinsi_action" model="ir.actions.act_window">
+      <field name="name">Propinsi</field>
+      <field name="res_model">res.country.state</field>
+      <field name="view_mode">list,form</field>
+      <field name="domain">[('country_id','=','ID')]</field> 
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          <!-- Add Text Here -->
+        </p><p>
+          <!-- More details about what a user can do with this object will be OK --> 
+        
+        </p>
+      </field>
+    </record>
+
+    <!-- Membuat View Tree/List District -->
+
+
+    <record id="wilayah_district_view_tree" model="ir.ui.view">
+        <field name="name">wilayah.district.tree</field>
+        <field name="model">res.district</field>
+        <field name="arch" type="xml">
+            <list string="Kota/Kabupaten">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="typ"/>
+                <field name="area"/>
+                <field name="state_id"/>
+                <field name="display_code"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- res.district search view -->
+    <record id="wilayah_district_view_search" model="ir.ui.view">
+        <field name="name">wilayah.district.tree</field>
+        <field name="model">res.district</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="typ"/>
+                <field name="state_id"/>
+            </search>
+        </field>
+    </record>
+
+    
+    <!-- Membuat View Form Course -->
+    
+    <record id="wilayah_district_view_form" model="ir.ui.view">
+        <field name="name">wilayah.district.form</field>
+        <field name="model">res.district</field>
+        <field name="arch" type="xml">
+            <form string="Kota/Kabupaten Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="Keterangan">
+                            <group>
+                              <field name="code"/>
+                              <field name="name"/>
+                              <field name="area"/>
+                              <field name="typ"/>
+                              <field name="state_id"/>
+                              <field name="display_code"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Membuat Action/Event Course -->
+    
+    <record id="wilayah_district_action" model="ir.actions.act_window">
+        <field name="name">Wilayah</field>
+        <field name="res_model">res.district</field>
+        <field name="view_mode">list,form,search</field>
+        <field name="help" type="html">
+            <p name="o_view_nocontent_smiling_face">
+                Buatlah Kota/Kabupaten .. 
+            </p>
+        </field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,158 @@
+<odoo>
+  <data>
+
+<!-- Membuat View Tree/List Category Level 1 -->
+ 
+
+<!-- res.partner.categorylevel1 tree view -->
+<record id="partner_categorylevel1_view_tree" model="ir.ui.view">
+  <field name="name">res.partner.categorylevel1.tree</field>
+  <field name="model">res.partner.categorylevel1</field>
+  <field name="arch" type="xml">
+    <list string="Category Level 1">
+      <field name="name"/>
+    </list>
+  </field>
+</record>
+
+<!-- Membuat View Form Course -->
+<!-- res.partner.categorylevel1 form view -->
+<record id="partner_categorylevel1_view_form" model="ir.ui.view">
+  <field name="name">res.partner.categorylevel1.form</field>
+  <field name="model">res.partner.categorylevel1</field>
+  <field name="arch" type="xml">
+        <form string="Category Level">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                </group>
+            </sheet>
+        </form>
+  </field>
+</record>
+
+<!-- res.partner.categorylevel1 action window -->
+<record id="partner_categorylevel1_action" model="ir.actions.act_window">
+  <field name="name">Group Pelanggan Level 1</field>
+  <field name="type">ir.actions.act_window</field>
+  <field name="res_model">res.partner.categorylevel1</field>
+  <field name="view_mode">list,form</field>
+  <field name="help" type="html">
+    <p class="oe_view_nocontent_create">
+      <!-- Add Text Here -->
+       Kategory Pelanggan Level 1 
+    </p><p>
+      <!-- More details about what a user can do with this object will be OK --> 
+    
+    </p>
+  </field>
+</record>
+
+
+<!-- Group Pelanggan Level 2 -->
+<!-- res.partner.categorylevel1 tree view -->
+<record id="partner_categorylevel2_view_tree" model="ir.ui.view">
+  <field name="name">res.partner.categorylevel2.tree</field>
+  <field name="model">res.partner.categorylevel2</field>
+  <field name="arch" type="xml">
+    <list string="Category Level 1">
+      <field name="code"/>
+      <field name="name"/>
+      <field name="parent_id"/>
+    </list>
+  </field>
+</record>
+
+
+
+<!-- Membuat View Form Course -->
+<!-- res.partner.categorylevel1 form view -->
+<record id="partner_categorylevel2_view_form" model="ir.ui.view">
+  <field name="name">res.partner.categorylevel2.form</field>
+  <field name="model">res.partner.categorylevel2</field>
+  <field name="arch" type="xml">
+        <form string="Category Level">
+            <sheet>
+                <group>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                </group>
+            </sheet>
+        </form>
+  </field>
+</record>
+
+<!-- res.partner.categorylevel1 action window -->
+<record id="partner_categorylevel2_action" model="ir.actions.act_window">
+  <field name="name">Group Pelanggan Level 2</field>
+  <field name="type">ir.actions.act_window</field>
+  <field name="res_model">res.partner.categorylevel2</field>
+  <field name="view_mode">list,form</field>
+  <field name="help" type="html">
+    <p class="oe_view_nocontent_create">
+      <!-- Add Text Here -->
+       Kategory Pelanggan Level 2
+    </p><p>
+      <!-- More details about what a user can do with this object will be OK --> 
+    
+    </p>
+  </field>
+</record>
+
+
+
+<!-- Category Pelanggan -->
+<!-- res.partner.categorylevel1 tree view -->
+<record id="partner_industry_view_tree" model="ir.ui.view">
+  <field name="name">res.partner.industry</field>
+  <field name="model">res.partner.industry</field>
+  <field name="arch" type="xml">
+    <list string="Category Level 1">
+        <field name="name"/>
+        <field name="parent_id"/>
+    </list>
+  </field>
+</record>
+
+<!-- Membuat View Form Course -->
+<!-- res.partner.industry form view -->
+<record id="partner_industry_view_form" model="ir.ui.view">
+  <field name="name">res.partner.industry.form</field>
+  <field name="model">res.partner.industry</field>
+  <field name="arch" type="xml">
+        <form string="Category Level">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                </group>
+            </sheet>
+        </form>
+  </field>
+</record>
+
+<!-- res.partner.industry action window -->
+<record id="partner_industry_action" model="ir.actions.act_window">
+  <field name="name">Category Pelanggan</field>
+  <field name="type">ir.actions.act_window</field>
+  <field name="res_model">res.partner.industry</field>
+  <field name="view_mode">list,form</field>
+  <field name="help" type="html">
+    <p class="oe_view_nocontent_create">
+      <!-- Add Text Here -->
+       Kategory Pelanggan 
+    </p><p>
+      <!-- More details about what a user can do with this object will be OK --> 
+    
+    </p>
+  </field>
+</record>
+
+
+
+
+
+
+  </data>
+</odoo>

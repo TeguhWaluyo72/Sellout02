@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+    <menuitem id="sellout_base.menu_dashboard_sellout" name="Selling Out" action="sellout_dashboard.action_order_report_all" groups="base.group_user"/>   
+    <menuitem id="menu_bar_reports"        name="Report"   parent="sellout_base.menu_dashboard_sellout" sequence="80" groups="base.group_user" />
+    <!-- This Menu Item must have a parent and an action -->
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="menu_item_report_outlet" name="Outlet" parent="menu_bar_reports" action="sellout_dashboard.action_oulet_report_all" groups="base.group_user"/>
+    <menuitem id="menu_item_report_test"   name="Report1" parent="menu_bar_reports" />
+</odoo>
+

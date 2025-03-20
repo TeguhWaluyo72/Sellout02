@@ -1,0 +1,35 @@
+"id","name","full_name","parent_id:id"
+"sellout_base._categ_3_1","Grosir Kelontong","Grosir Kelontong",sellout_base._categ_2_1
+"sellout_base._categ_3_2","Grosir PBF","Grosir PBF",sellout_base._categ_2_1
+"sellout_base._categ_3_3","Grosir PBOT","Grosir PBOT",sellout_base._categ_2_1
+"sellout_base._categ_3_4","Grosir Baby","Grosir Baby",sellout_base._categ_2_1
+"sellout_base._categ_3_5","Others","Others",sellout_base._categ_2_1
+
+"sellout_base._categ_3_6","Apotik","Apotik",sellout_base._categ_2_2
+"sellout_base._categ_3_7","Toko Obat","Toko Obat",sellout_base._categ_2_2
+"sellout_base._categ_3_8","RS","RS",sellout_base._categ_2_2
+"sellout_base._categ_3_9","Babyshop","Babyshop",sellout_base._categ_2_2
+"sellout_base._categ_3_10","Koperasi","Koperasi",sellout_base._categ_2_2
+"sellout_base._categ_3_11","Panti P1jat","Panti Pijat",sellout_base._categ_2_2
+"sellout_base._categ_3_12","Institusi","Institusi",sellout_base._categ_2_2
+"sellout_base._categ_3_13","Toko Kelontong","Toko Kelontong",sellout_base._categ_2_2
+"sellout_base._categ_3_14","Toko Ko4metik","Toko Kosmetik",sellout_base._categ_2_2
+"sellout_base._categ_3_15","Horeka","Horeka",sellout_base._categ_2_2
+
+"sellout_base._categ_3_16","HMG","Hypermarket Group",sellout_base._categ_2_3
+"sellout_base._categ_3_17","SMG","Supermarket Group",sellout_base._categ_2_3
+"sellout_base._categ_3_18","MMG","Mini Market Group",sellout_base._categ_2_3
+"sellout_base._categ_3_19","MWS","Modern Wholesaler",sellout_base._categ_2_3
+"sellout_base._categ_3_20","APTG","Apotik Group",sellout_base._categ_2_3
+
+"sellout_base._categ_3_21","SM","Supermarket",sellout_base._categ_2_4
+"sellout_base._categ_3_22","MM","Mini Market",sellout_base._categ_2_4
+
+"sellout_base._categ_3_23","OS","Official Store",sellout_base._categ_2_4
+"sellout_base._categ_3_24","EC","E-Commerce",sellout_base._categ_2_4
+
+"sellout_base._categ_0_0","INCOMPLETE","",sellout_base._categ_2_0
+"sellout_base._categ_0_1","GT","Global Trade",sellout_base._categ_2_1
+"sellout_base._categ_0_2","MT","Modern Trade",sellout_base._categ_2_2
+"sellout_base._categ_0_3","OL","Online Business",sellout_base._categ_2_3
+
