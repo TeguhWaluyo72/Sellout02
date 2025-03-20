@@ -175,7 +175,7 @@ class SelloutUpload(models.Model):
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
                     'params': {
-                        'title': _('Warning Mandatory Link Table Empty'),
+                        'title': 'Warning Mandatory Link Table Empty',
                         'type': 'warning',
                         'message': 'Link barang masih ada yang kosong',
                         'sticky': True,
@@ -471,10 +471,37 @@ class SelloutUpload(models.Model):
             if ketemu==0:
                 nvalid = 1
 
-                mkelompok = self.env["sellout.link.customer.kelompok"].search([
+                ketemu = self.env["sellout.link.customer.kelompok"].search_count([
                    ('company_id','=',self.company_id.id),
-                   ('code', '=', kode_ctm ),
+                   ('code', '=', kelom_cust ),
                 ])
+
+                if ketemu==0:
+                    kelompok = self.env["sellout.link.customer.kelompok"].create({
+                        'company_id' : self.company_id.id,
+                        'code'       : kelom_cust ,
+                    })
+                else:
+                    kelompok = self.env["sellout.link.customer.kelompok"].search_count([
+                    ('company_id','=',self.company_id.id),
+                    ('code', '=', kelom_cust ),
+                    ],limit=1)
+
+                ketemu = self.env["sellout.link.wilayah"].search_count([
+                        'company_id','=',self.company_id.id,
+                        'code'      ,'=',kode_wilay ,
+                ])
+
+                if ketemu==0:
+                    wilayah = self.env["sellout.link.wilayah"].create({
+                        'company_id' : self.company_id.id,
+                        'code'       : kode_wilay ,
+                    })
+                else:
+                    wilayah = self.env["sellout.link.wilayah"].search_count([
+                    ('company_id','=',self.company_id.id),
+                    ('code', '=', kode_wilay ),
+                    ],limit=1)
 
                 # create INCOMPLETE customer master             
 
@@ -489,6 +516,8 @@ class SelloutUpload(models.Model):
                     'ref'        : kode_ctm,
                     'name'       : nama_ctm,
                     'street'     : alamat,
+                    'district_id': wilayah.id,
+                    'industry_id': kelompok.id,
                 })              
                 self.env["sellout.link.customer"].create({
                     'company_id' : self.company_id.id,
@@ -498,7 +527,7 @@ class SelloutUpload(models.Model):
                     'kelom_cust' : kelom_cust,
                     'kode_wilay' : kode_wilay,
                     'nama_wilay' : nama_wilay,
-                    'customer_id': 0                    
+                    'customer_id': mcustomer.id                   
                 })
             else:
                 kode = self.env["sellout.link.customer"].search([
