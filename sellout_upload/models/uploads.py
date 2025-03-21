@@ -154,6 +154,7 @@ class SelloutUpload(models.Model):
             return             
 
 
+
         # delete dulu kalau sudah pernah di upload 
         # delete yang sale.order , harusnya sale.order.line nya juga kehapus 
         if not ( self.state=='' or self.state=='draft' or self.state=='done' ):
@@ -170,6 +171,7 @@ class SelloutUpload(models.Model):
             ret_wilayah  = self.__upload_wilayah()
             ret_customer = self.__upload_customer()
 
+            ## Mandatory barang tidak ada belum di posting 
             if ret_barang == 1:
                 notification = {
                     'type': 'ir.actions.client',
@@ -182,8 +184,10 @@ class SelloutUpload(models.Model):
                     }
                 }
                 return notification
-            
-            ##ret_post      = self.__post()
+
+            self.env.cr.commit()
+            ret_post      = self.__post()
+
 
             if ret_salesman==0 and ret_wilayah==0 and ret_customer==0:
                 notification = {
@@ -476,20 +480,22 @@ class SelloutUpload(models.Model):
                    ('code', '=', kelom_cust ),
                 ])
 
+
                 if ketemu==0:
                     kelompok = self.env["sellout.link.customer.kelompok"].create({
                         'company_id' : self.company_id.id,
                         'code'       : kelom_cust ,
                     })
                 else:
-                    kelompok = self.env["sellout.link.customer.kelompok"].search_count([
+                    kelompok = self.env["sellout.link.customer.kelompok"].search([
                     ('company_id','=',self.company_id.id),
                     ('code', '=', kelom_cust ),
                     ],limit=1)
 
+                
                 ketemu = self.env["sellout.link.wilayah"].search_count([
-                        'company_id','=',self.company_id.id,
-                        'code'      ,'=',kode_wilay ,
+                        ('company_id','=',self.company_id.id),
+                        ('code'      ,'=',kode_wilay ),
                 ])
 
                 if ketemu==0:
@@ -498,21 +504,21 @@ class SelloutUpload(models.Model):
                         'code'       : kode_wilay ,
                     })
                 else:
-                    wilayah = self.env["sellout.link.wilayah"].search_count([
-                    ('company_id','=',self.company_id.id),
-                    ('code', '=', kode_wilay ),
-                    ],limit=1)
+                    wilayah = self.env["sellout.link.wilayah"].search([
+                        ('company_id','=',self.company_id.id),
+                        ('code', '=', kode_wilay ),
+                        ],limit=1)
 
                 # create INCOMPLETE customer master             
 
                 mcustomer = self.env["res.partner"].create({
+                    'company_id' : self.company_id.id,
                     'dgExType'   : kelom_cust,
                     'dgExNama'   : nama_ctm,
                     'dgExAlamat' : alamat,
                     'dgExWilayah': kode_wilay,
                     'dgCompanyId': self.company_id.id,
                     'dgExreff'   : kode_ctm,
-                    'district_id': 0,
                     'ref'        : kode_ctm,
                     'name'       : nama_ctm,
                     'street'     : alamat,
@@ -530,19 +536,40 @@ class SelloutUpload(models.Model):
                     'customer_id': mcustomer.id                   
                 })
             else:
+                kelompok = self.env["sellout.link.customer.kelompok"].search([
+                    ('company_id','=',self.company_id.id),
+                    ('code', '=', kelom_cust ),
+                    ],limit=1)                
+                wilayah = self.env["sellout.link.wilayah"].search([
+                    ('company_id','=',self.company_id.id),
+                    ('code', '=', kode_wilay ),
+                    ],limit=1)
                 kode = self.env["sellout.link.customer"].search([
                     ('company_id','=',self.company_id.id),
                     ('code', '=', kode_ctm ),
                     ('name', '=', nama_ctm )         
                 ])
-                customer = self.env['sellout.upload.temp'].search([
+                temps = self.env['sellout.upload.temp'].search([
                     ('upload_id','=' ,self.id),
                     ('company_id','=',self.company_id.id),
                     ('kode_ctm', '=', kode_ctm ),
                 ])                   
-                customer.write({
+                temps.write({
                     'customer_id' : kode.customer_id 
-                })                           
+                })
+                customer = self.env["res.partner"].search([('id','=',kode.customer_id.id)],limit=1)
+                if customer.industry_id == 0:
+                    customer.write({
+                        'industry_id' : kelompok.klp_cust_id.id 
+                    })
+                if customer.district_id == 0:
+                    customer.write({
+                        'district_id' : wilayah.district_id.id
+                    })
+
+                ## update data
+                #               
+
 
     def __post(self):
         tempuploads = self.env["sellout.upload.temp"].search([('upload_id','=',self.id)], order='tanggal,no_faktur,kode_ctm')
@@ -551,48 +578,48 @@ class SelloutUpload(models.Model):
         kode_ctm  = ''
         for t_upload in tempuploads:
             ## print(t_upload.tanggal,t_upload.no_faktur,t_upload.company_id,t_upload.customer_id,self.id,t_upload.salesman_id)
-            if t_upload.tanggal != tanggal or t_upload.no_faktur != no_faktur or t_upload.kode_ctm != kode_ctm:
-                tanggal   = t_upload.tanggal 
-                no_faktur = t_upload.no_faktur
-                kode_ctm  = t_upload.kode_ctm
-                so = self.env["sale.order"].create({
-                    'name'          : t_upload.no_faktur , 
-                    'company_id'    : t_upload.company_id,
-                    'date_order'    : t_upload.tanggal , 
-                    'name'          : t_upload.no_faktur,
-                    'partner_id'    : t_upload.customer_id,
-                    # 'state'         : 'draft',
-                    'client_order_ref' : t_upload.no_faktur,
-#                    'created_date'  : t_upload.tanggal,
-                    'origin'        : self.name,
-                    'upload_id'     : self.id,
-#                    'pricelist_id'  : 
-#                    'currency_id '  : 
-                    'user_id'        : t_upload.user_id,
-                    'salesman_id'    : t_upload.salesman_id,
-#                    'team_id'       :                     
-                })
-            ## sale order line     
-            if t_upload.qty_jual != 0:
-                so_line = self.env["sale.order.line"].create({
-                    "order_id"        : so.id,
-                    "product_id"      : t_upload.barang_id,
-                    'price_unit'      : t_upload.a_rp_jl,
-                    'product_uom_qty' : t_upload.qty_jual,
-                    'a_rp_hna'        : t_upload.a_rp_hna,
-                    'rp_hna'          : t_upload.a_rp_hna*t_upload.qty_jual,
-                    'qty_extra'       : 0,
-                })
-            if t_upload.qty_extra != 0:
-                so_line = self.env["sale.order.line"].create({
-                    "order_id"        : so.id,
-                    "product_id"      : t_upload.barang_id,
-                    'price_unit'      : 0,
-                    'product_uom_qty' : t_upload.qty_extra,
-                    'a_rp_hna'        : 0,
-                    'rp_hna'          : 0,
-                    'qty_extra'       : t_upload.qty_extra,
-                })
+            ## 
+            if not ( t_upload.customer_id == 0 or t_upload.barang_id == 0 or t_upload.salesman_id == 0 ):                
+                if t_upload.tanggal != tanggal or t_upload.no_faktur != no_faktur or t_upload.kode_ctm != kode_ctm:
+                    tanggal   = t_upload.tanggal 
+                    no_faktur = t_upload.no_faktur
+                    kode_ctm  = t_upload.kode_ctm
+                    print(t_upload)
+                    print("data : " , t_upload.no_faktur, t_upload.tanggal , t_upload.kode_ctm , t_upload.customer_id , t_upload.kode_sls , t_upload.salesman_id )
+                    so = self.env["sale.order"].create({
+                        'name'          : t_upload.no_faktur , 
+                        'company_id'    : t_upload.company_id,
+                        'date_order'    : t_upload.tanggal , 
+                        'name'          : t_upload.no_faktur,
+                        'partner_id'    : t_upload.customer_id,
+                        'client_order_ref' : t_upload.no_faktur,
+                        'origin'        : self.name,
+                        'upload_id'     : self.id,
+                        'user_id'        : t_upload.user_id,
+                        'salesman_id'    : t_upload.salesman_id,
+                    })
+                    print("save order : " , t_upload.no_faktur, t_upload.tanggal , t_upload.kode_ctm )
+                ## sale order line     
+                if t_upload.qty_jual != 0:
+                    so_line = self.env["sale.order.line"].create({
+                        "order_id"        : so.id,
+                        "product_id"      : t_upload.barang_id,
+                        'price_unit'      : t_upload.a_rp_jl,
+                        'product_uom_qty' : t_upload.qty_jual,
+                        'a_rp_hna'        : t_upload.a_rp_hna,
+                        'rp_hna'          : t_upload.a_rp_hna*t_upload.qty_jual,
+                        'qty_extra'       : 0,
+                    })
+                if t_upload.qty_extra != 0:
+                    so_line = self.env["sale.order.line"].create({
+                        "order_id"        : so.id,
+                        "product_id"      : t_upload.barang_id,
+                        'price_unit'      : 0,
+                        'product_uom_qty' : t_upload.qty_extra,
+                        'a_rp_hna'        : 0,
+                        'rp_hna'          : 0,
+                        'qty_extra'       : t_upload.qty_extra,
+                    })
 
     def action_confirm(self):
         # test 
