@@ -12,11 +12,27 @@ class LinkWilayah(models.Model):
         comodel_name='res.company',
         index=True,
         default=lambda self: self.env.company)
-#    template_id = fields.Many2one('link.template','Template' , index = True)
     village_id = fields.Many2one('res.district.village', string="Kelurahan/Desa" )
     sub_district_id = fields.Many2one('res.district.sub', string='Kecamatan' )
     district_id = fields.Many2one('res.district', string='Kabupaten/Kota')
-    state_id = fields.Many2one('res.country.state', string='Provinsi' )    
+    state_id = fields.Many2one('res.country.state', string='Provinsi' ) 
+
+    @api.model
+    def write(self, values):
+        if 'wilayah_id' in values and values['wilayah_id']:
+            linkcusts = self.env["sellout.link.customer"].search([
+                ('company_id','=',self.company_id.id),
+                ('code' , '=', self.code )
+            ])
+            linkcusts.write({
+                'wilayah_id' : values('wilayah_id')
+            })
+            for linkcust in linkcusts:
+                cust = self.env["res.partner"].search([('id','=', linkcust.customer_id.id )])
+                cust.write({
+                    'district_id' : values('wilayah_id')
+                })
+
 
 class LinkBarang(models.Model):
     _name   = 'sellout.link.barang'
@@ -27,7 +43,6 @@ class LinkBarang(models.Model):
         comodel_name='res.company',
         index=True,
         default=lambda self: self.env.company)
-#    template_id = fields.Many2one('link.template','Template' , index = True)
     barang_id = fields.Many2one(
         string="Barang",
         comodel_name='product.template')
@@ -41,10 +56,6 @@ class LinkSalesman(models.Model):
         comodel_name='res.company',
         index=True,
         default=lambda self: self.env.company)
-    user_id = fields.Many2one(
-        comodel_name='res.users',
-        string="Salesperson",
-        )    
     salesman_id = fields.Many2one(
         comodel_name='sellout.salesman',
         string = 'Salesman'
@@ -61,7 +72,23 @@ class LinkKlpcustomer(models.Model):
         index=True,
         default=lambda self: self.env.company)
     klp_cust_id  = fields.Many2one('res.partner.industry','Kelompok ')
-#    template_id = fields.Many2one('link.template','Template' , index = True)
+
+    @api.model
+    def write(self, values):
+        if 'klp_cust_id' in values and values['klp_cust_id']:
+            linkcusts = self.env["sellout.link.customer"].search([
+                ('company_id','=',self.company_id.id),
+                ('code' , '=', self.code )
+            ])
+            linkcusts.write({
+                'klp_cust_id' : values('klp_cust_id')
+            })
+            for linkcust in linkcusts:
+                cust = self.env["res.partner"].search([('id','=', linkcust.customer_id.id )])
+                cust.write({
+                    'industry_id' : values('klp_cust_id')
+                })
+
     
     
 class LinkCustomer(models.Model):
@@ -77,6 +104,6 @@ class LinkCustomer(models.Model):
     kelom_cust = fields.Char(string="Kelompok")
     kode_wilay = fields.Char(string="Kode Wilayah")
     nama_wilay = fields.Char(string="Nama Wilayah")
-#   template_id = fields.Many2one('link.template','Template' , index = True)
-
     customer_id = fields.Many2one(comodel_name='res.partner', string='Customer')
+
+
