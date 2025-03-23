@@ -2,12 +2,8 @@
 
 from odoo import models, fields, api , tools
 from odoo.exceptions import UserError
-#from datetime import datetime
-#from datetime import datetime , date , time , fromordinal
 import datetime 
-#import datetime
 
-import xlrd
 import tempfile
 import binascii
 import openpyxl
@@ -36,8 +32,8 @@ class SelloutHNAPricelist(models.Model):
     price       = fields.Float("Price")
 
 
-class SelloutUploadTemp(models.Model):
-    _name = 'sellout.upload.temp'
+class SelloutUploadDetail(models.Model):
+    _name = 'sellout.upload.detail'
     _description = 'Temp table upload'
 
     upload_id   = fields.Many2one('sellout.upload',string='upload id')
@@ -45,7 +41,6 @@ class SelloutUploadTemp(models.Model):
     kode_ctm    = fields.Char(string='Kode Pelanggan')
     nama_ctm    = fields.Char(string='Nama Pelanggan')
     kelom_cust  = fields.Char(string='Kelompok Pelanggan')
-    # customer_id = fields.Many2one('')
     alamat      = fields.Char(string='Alamat Pelanggan')
     kode_wilay  = fields.Char(string='Kode Wilayah')
     nama_wilay  = fields.Char(string='Nama Wilayah')
@@ -98,12 +93,12 @@ class SelloutUpload(models.Model):
     # detail 
    
    
-    faktur_lines   = fields.One2many(comodel_name='sellout.upload.temp' , inverse_name='upload_id' , string='Fakturs')    
-    customer_lines = fields.One2many(comodel_name='sellout.upload.temp.customer',inverse_name='upload_id',string='Pelanggan')
-    barang_lines   = fields.One2many(comodel_name='sellout.upload.temp.barang' ,inverse_name='upload_id',string='Barang')
-    wilayah_lines  = fields.One2many(comodel_name='sellout.upload.temp.wilayah',inverse_name='upload_id',string='Wilayah')
+    faktur_lines   = fields.One2many(comodel_name='sellout.upload.detail' , inverse_name='upload_id' , string='Fakturs')    
+    customer_lines = fields.One2many(comodel_name='sellout.upload.detail.customer',inverse_name='upload_id',string='Pelanggan')
+    barang_lines   = fields.One2many(comodel_name='sellout.upload.detail.barang' ,inverse_name='upload_id',string='Barang')
+    wilayah_lines  = fields.One2many(comodel_name='sellout.upload.detail.wilayah',inverse_name='upload_id',string='Wilayah')
     so_lines       = fields.One2many(comodel_name='sale.order',inverse_name='upload_id',string='sale.order')
-    salesman_lines = fields.One2many(comodel_name='sellout.upload.temp.salesman',inverse_name='upload_id',string='Salesman')   
+    salesman_lines = fields.One2many(comodel_name='sellout.upload.detail.salesman',inverse_name='upload_id',string='Salesman')   
 
 
     def unlink(self):
@@ -158,10 +153,12 @@ class SelloutUpload(models.Model):
         # delete dulu kalau sudah pernah di upload 
         # delete yang sale.order , harusnya sale.order.line nya juga kehapus 
         if not ( self.state=='' or self.state=='draft' or self.state=='done' ):
+            soline = self.env["sale.order.line"].search([('upload_id','=', self.id)])
+            soline.unlink()
             so = self.env["sale.order"].search([('upload_id','=', self.id)])
             so.unlink()
 
-        temp = self.env["sellout.upload.temp"].search([('upload_id','=', self.id)])
+        temp = self.env["sellout.upload.detail"].search([('upload_id','=', self.id)])
         temp.unlink()
    
         ret_upload   = self.__upload_load_xls(sheet)
@@ -180,7 +177,7 @@ class SelloutUpload(models.Model):
                         'title': 'Warning Mandatory Link Table Empty',
                         'type': 'warning',
                         'message': 'Link barang masih ada yang kosong',
-                        'sticky': True,
+                        'sticky': False,
                     }
                 }
                 return notification
@@ -197,7 +194,7 @@ class SelloutUpload(models.Model):
                         'title': 'Complete',
                         'type': 'success',
                         'message': 'File berhasil di upload',
-                        'sticky': True,
+                        'sticky': False,
                     }
                 }
                 return notification
@@ -210,7 +207,7 @@ class SelloutUpload(models.Model):
                         'title': 'INCOMPLETE POST',
                         'type': 'warning',
                         'message': 'Link masih ada yang kosong , post incomplete',
-                        'sticky': True,
+                        'sticky': False,
                     }
                 }
                 return notification
@@ -232,7 +229,6 @@ class SelloutUpload(models.Model):
         try:
             for row in range(2,sheet.max_row):
 
-
                 xkode_ctm       = str(sheet.cell(row,2).value).rstrip()
                 xnama_ctm       = sheet.cell(row,3).value
                 xalamat         = sheet.cell(row,4).value
@@ -253,7 +249,7 @@ class SelloutUpload(models.Model):
                 xnama_brg       = sheet.cell(row,13).value    
 
 
-                temp = self.env["sellout.upload.temp"].create({
+                temp = self.env["sellout.upload.detail"].create({
                     "upload_id"     : self.id , 
                     "company_id"    : self.company_id.id ,
                     "kode_ctm"      : xkode_ctm,
@@ -268,14 +264,15 @@ class SelloutUpload(models.Model):
                     "no_faktur"     : sheet.cell(row,11).value,
                     "kode_brg"      : xkode_brg,            
                     "nama_brg"      : xnama_brg,
-                    "qty_jual"      : sheet.cell(row,14).value,
-                    "qty_extra"     : sheet.cell(row,15).value,
-                    "a_rp_jl"       : sheet.cell(row,16).value,
-                    "a_rp_disc"     : sheet.cell(row,17).value,            
-                    "a_rp_hna"      : sheet.cell(row,18).value,
-                    "rp_jual"       : sheet.cell(row,19).value,
-                    "rp_disc"       : sheet.cell(row,20).value,
-                    "rp_hna"        : sheet.cell(row,21).value,
+                    "qty"           : sheet.cell(row,14).value,
+                    "qty_jual"      : sheet.cell(row,15).value,
+                    "qty_extra"     : sheet.cell(row,16).value,
+                    "a_rp_jl"       : sheet.cell(row,17).value,
+                    "a_rp_disc"     : sheet.cell(row,18).value,            
+                    "a_rp_hna"      : 0,
+                    "rp_jual"       : 0,
+                    "rp_disc"       : 0,
+                    "rp_hna"        : 0,
                     "customer_id"   : 0,
                     "salesman_id"   : 0,
                     "barang_id"     : 0,
@@ -293,14 +290,30 @@ class SelloutUpload(models.Model):
 
             self.date_start = xdate_start
             self.date_end   = xdate_end
-        except:
-            return 1                
+        except Exception as e:
+            raise UserError(e)
+            return 1
+        ## search date 
+        ## self.date_start between date_start or date_end
+        ## self.date_end   between date_start or date_end
+        ## company_id = self.company_id.id and (
+        # ( self.date_start >= date_start and self.date_start <= date_end )
+        # ( self.date_end >= date_start and self.date_end <= date_end ))  
+           
+        #collab = self.env['sellout.upload'].search_count(['&',
+        #    ('company_id','=',self.company_id.id),'|','&',
+        #    ('date_start','>=',self.date_start),('date_end','<=',self.date_start),'&',
+        #    ('date_start','>=',self.date_end),('date_end','<=',self.date_end),      
+        #    ])
+        #if collab>=0:
+        #    raise UserError('Periode Data sudah pernah dimasukkan ')
         return 0
+
 
 
     def __upload_barang(self):
         xret = 0 
-        barangs = self.env['sellout.upload.temp']._read_group( [
+        barangs = self.env['sellout.upload.detail']._read_group( [
                     ('upload_id','=',self.id)
                 ], ['company_id','kode_brg','nama_brg'],
                     ['__count'] )
@@ -328,7 +341,7 @@ class SelloutUpload(models.Model):
                     ('name', '=', nama_brg )         
                 ],limit=1)
 
-                barang = self.env['sellout.upload.temp'].search([
+                barang = self.env['sellout.upload.detail'].search([
                     ('upload_id','=' ,self.id),
                     ('company_id','=',self.company_id.id),
                     ('kode_brg', '=', kode_brg ),
@@ -343,7 +356,7 @@ class SelloutUpload(models.Model):
                     ## update HHA 
                     hnas = self.env["sellout.hnapricelist"].search([('barang_id','=',kode.barang_id.id)],order='date_start')
                     for hna in hnas:
-                        temps = self.env["sellout.upload.temp"].search([
+                        temps = self.env["sellout.upload.detail"].search([
                         ('upload_id','=',self.id),
                         ('barang_id','=',kode.barang_id.id),
                         ('tanggal','>=',hna.date_start),('tanggal','<=',hna.date_end)
@@ -357,7 +370,7 @@ class SelloutUpload(models.Model):
 
     #salesman (NON-MANDATORY)
     def __upload_salesman(self):
-        salesmans = self.env['sellout.upload.temp']._read_group( [
+        salesmans = self.env['sellout.upload.detail']._read_group( [
                   ('upload_id','=',self.id)
                 ], ['company_id','kode_sls','nama_sls'],
                    ['__count'] )
@@ -394,7 +407,7 @@ class SelloutUpload(models.Model):
                     ('name', '=', nama_sls )         
                 ])
 
-                salesman = self.env['sellout.upload.temp'].search([
+                salesman = self.env['sellout.upload.detail'].search([
                     ('upload_id','=' ,self.id),
                     ('company_id','=',self.company_id.id),
                     ('kode_sls', '=', kode_sls ),
@@ -411,7 +424,7 @@ class SelloutUpload(models.Model):
         external = self.env.ref('sellout_base.ct_00_000')
 
         xret = 0
-        wilayahs = self.env['sellout.upload.temp']._read_group( [
+        wilayahs = self.env['sellout.upload.detail']._read_group( [
                   ('upload_id','=',self.id)
                 ], ['company_id','kode_wilay','nama_wilay'],
                    ['__count'] )
@@ -441,7 +454,7 @@ class SelloutUpload(models.Model):
                     ('code', '=', kode_wilay ),
                     ('name', '=', nama_wilay )         
                 ])
-                wilayah = self.env['sellout.upload.temp'].search([
+                wilayah = self.env['sellout.upload.detail'].search([
                     ('upload_id',  '=',self.id),
                     ('company_id', '=',self.company_id.id),
                     ('kode_wilay', '=', kode_wilay ),
@@ -453,7 +466,7 @@ class SelloutUpload(models.Model):
 
     def __upload_customer(self):
         # MANDATORY tapi tidak perlu lengkap wilayah & kategory pelanggan 
-        customers = self.env['sellout.upload.temp']._read_group( [
+        customers = self.env['sellout.upload.detail']._read_group( [
                   ('upload_id','=',self.id)
                 ], ['company_id','kode_ctm','nama_ctm','alamat','kelom_cust','kode_wilay','nama_wilay'],
                    ['__count'] )
@@ -549,7 +562,7 @@ class SelloutUpload(models.Model):
                     ('code', '=', kode_ctm ),
                     ('name', '=', nama_ctm )         
                 ])
-                temps = self.env['sellout.upload.temp'].search([
+                temps = self.env['sellout.upload.detail'].search([
                     ('upload_id','=' ,self.id),
                     ('company_id','=',self.company_id.id),
                     ('kode_ctm', '=', kode_ctm ),
@@ -572,7 +585,7 @@ class SelloutUpload(models.Model):
 
 
     def __post(self):
-        tempuploads = self.env["sellout.upload.temp"].search([('upload_id','=',self.id)], order='tanggal,no_faktur,kode_ctm')
+        tempuploads = self.env["sellout.upload.detail"].search([('upload_id','=',self.id)], order='tanggal,no_faktur,kode_ctm')
         tanggal   = datetime.date.today()
         no_faktur = ''
         kode_ctm  = ''
@@ -597,6 +610,7 @@ class SelloutUpload(models.Model):
                         'upload_id'     : self.id,
                         'user_id'        : t_upload.user_id,
                         'salesman_id'    : t_upload.salesman_id,
+                        'currency_id'   : self.company_id.currency_id,
                     })
                     print("save order : " , t_upload.no_faktur, t_upload.tanggal , t_upload.kode_ctm )
                 ## sale order line     
@@ -607,8 +621,9 @@ class SelloutUpload(models.Model):
                         'price_unit'      : t_upload.a_rp_jl,
                         'product_uom_qty' : t_upload.qty_jual,
                         'a_rp_hna'        : t_upload.a_rp_hna,
-                        'rp_hna'          : t_upload.a_rp_hna*t_upload.qty_jual,
+                        'rp_hna'          : t_upload.a_rp_hna * t_upload.qty_jual,
                         'qty_extra'       : 0,
+                        'upload_detail_id': t_upload.id,
                     })
                 if t_upload.qty_extra != 0:
                     so_line = self.env["sale.order.line"].create({
@@ -619,11 +634,12 @@ class SelloutUpload(models.Model):
                         'a_rp_hna'        : 0,
                         'rp_hna'          : 0,
                         'qty_extra'       : t_upload.qty_extra,
+                        'upload_detail_id': t_upload.id,                        
                     })
 
     def action_confirm(self):
         # test 
-        adayangkosong = self.env["sellout.upload.temp"].search_count([
+        adayangkosong = self.env["sellout.upload.detail"].search_count([
             '&',('upload_id','=',self.id), '|',
             ('customer_id','=',0),('salesman_id','=',0),('barang_id','=',0),('wilayah_id','=',0)
         ])
@@ -634,9 +650,9 @@ class SelloutUpload(models.Model):
 
         self.env.cr.commit()
         print(" Execute query upload ")
-        # tempupload = self.env["sellout.upload.temp"].search([('upload_id)','=',self.id)], order='tanggal,no_faktur,kode_ctm')
-        # tempupload = self.env["sellout.upload.temp"].search([('upload_id','=',self.id)])
-        # tempuploads = self.env["sellout.upload.temp"].search([('upload_id)','=',self.id)], order='tanggal,no_faktur,kode_ctm')
+        # tempupload = self.env["sellout.upload.detail"].search([('upload_id)','=',self.id)], order='tanggal,no_faktur,kode_ctm')
+        # tempupload = self.env["sellout.upload.detail"].search([('upload_id','=',self.id)])
+        # tempuploads = self.env["sellout.upload.detail"].search([('upload_id)','=',self.id)], order='tanggal,no_faktur,kode_ctm')
 
 
 
@@ -665,7 +681,7 @@ class SelloutUpload(models.Model):
         if self.state != 'done':
             so = self.env['sale.order'].search(['upload_id','=',self.id])
             so.unlink()
-            upload_temp = self.env['sellout.upload.temp'].search(['upload_id','=',self.id])
+            upload_temp = self.env['sellout.upload.detail'].search(['upload_id','=',self.id])
             upload_temp.unlink()
             upload = self.env['sellout.upload'].search(['upload_id','=',self.id])
             upload.unlink()
@@ -674,10 +690,10 @@ class SelloutUpload(models.Model):
             
 
 class TempUploadCustomer(models.Model):
-    _name = 'sellout.upload.temp.customer'
+    _name = 'sellout.upload.detail.customer'
     _auto = False 
 
-    upload_id   = fields.Many2one('sellout.upload.temp',string='upload id')
+    upload_id   = fields.Many2one('sellout.upload.detail',string='upload id')
     company_id = fields.Many2one(
         comodel_name='res.company',
         index=True,
@@ -692,11 +708,11 @@ class TempUploadCustomer(models.Model):
 
 
     def init(self):
-        tools.drop_view_if_exists(self._cr,'sellout_upload_temp_customer')
+        tools.drop_view_if_exists(self._cr,'sellout_upload_detail_customer')
         self._cr.execute("""
-            CREATE OR REPLACE VIEW sellout_upload_temp_customer AS ( 
+            CREATE OR REPLACE VIEW sellout_upload_detail_customer AS ( 
                 SELECT row_number() OVER () AS id, a.upload_id , a.company_id, a.kode_ctm, a.nama_ctm , a.alamat , a.kelom_cust , a.kode_wilay , a.nama_wilay, b.customer_id
-                            FROM sellout_upload_temp a left outer join sellout_link_customer b 
+                            FROM sellout_upload_detail a left outer join sellout_link_customer b 
                 on a.kode_ctm = b.code and a.company_id = b.company_id
                             GROUP BY a.upload_id , a.company_id , a.kode_ctm,a.nama_ctm , a.alamat , a.kelom_cust , a.kode_wilay , a.nama_wilay, b.customer_id
                             ORDER BY a.upload_id , a.company_id , a.kode_ctm             
@@ -716,10 +732,10 @@ class TempUploadCustomer(models.Model):
 
 
 class TempUploadWilayah(models.Model):
-    _name = 'sellout.upload.temp.wilayah'
+    _name = 'sellout.upload.detail.wilayah'
     _auto = False 
 
-    upload_id   = fields.Many2one('sellout.upload.temp',string='upload id')
+    upload_id   = fields.Many2one('sellout.upload.detail',string='upload id')
     company_id = fields.Many2one(
         comodel_name='res.company',
         index=True,
@@ -729,11 +745,11 @@ class TempUploadWilayah(models.Model):
     district_id  = fields.Many2one(comodel_name='res.district', string='Wilayah')
 
     def init(self):
-        tools.drop_view_if_exists(self._cr,'sellout_upload_temp_wilayah')
+        tools.drop_view_if_exists(self._cr,'sellout_upload_detail_wilayah')
         self._cr.execute("""
-            CREATE OR REPLACE VIEW sellout_upload_temp_wilayah AS ( 
+            CREATE OR REPLACE VIEW sellout_upload_detail_wilayah AS ( 
                 SELECT row_number() OVER () AS id, a.upload_id , a.company_id, a.kode_wilay, a.nama_wilay , b.district_id
-                            FROM sellout_upload_temp a left outer join sellout_link_wilayah b 
+                            FROM sellout_upload_detail a left outer join sellout_link_wilayah b 
                 on a.company_id = b.company_id and a.kode_wilay = b.code
                             GROUP BY a.upload_id , a.company_id , a.kode_wilay, a.nama_wilay, b.district_id 
                             ORDER BY a.upload_id , a.company_id , a.kode_wilay            
@@ -744,10 +760,10 @@ class TempUploadWilayah(models.Model):
            
 
 class TempUploadSalesman(models.Model):
-    _name = 'sellout.upload.temp.salesman'
+    _name = 'sellout.upload.detail.salesman'
     _auto = False 
 
-    upload_id   = fields.Many2one('sellout.upload.temp',string='upload id')
+    upload_id   = fields.Many2one('sellout.upload.detail',string='upload id')
     company_id  = fields.Many2one(
         comodel_name='res.company',
         index=True,
@@ -758,22 +774,22 @@ class TempUploadSalesman(models.Model):
     salesman_id = fields.Many2one(comodel_name='sellout.salesman', string='Salesman')
 
     def init(self):
-        tools.drop_view_if_exists(self._cr,'sellout_upload_temp_salesman')
+        tools.drop_view_if_exists(self._cr,'sellout_upload_detail_salesman')
         self._cr.execute("""
-            CREATE OR REPLACE VIEW sellout_upload_temp_salesman AS ( 
-             SELECT row_number() OVER () AS id, a.upload_id , a.company_id, a.kode_sls, a.nama_sls , b.user_id , b.salesman_id
-             FROM sellout_upload_temp a left outer join sellout_link_salesman b 
+            CREATE OR REPLACE VIEW sellout_upload_detail_salesman AS ( 
+             SELECT row_number() OVER () AS id, a.upload_id , a.company_id, a.kode_sls, a.nama_sls , b.salesman_id
+             FROM sellout_upload_detail a left outer join sellout_link_salesman b 
              on a.company_id = b.company_id and a.kode_sls = b.code
-             GROUP BY a.upload_id , a.company_id , a.kode_sls, a.nama_sls, b.user_id , b.salesman_id
+             GROUP BY a.upload_id , a.company_id , a.kode_sls, a.nama_sls, b.salesman_id
              ORDER BY a.upload_id , a.company_id , a.kode_sls
             )
         """)       
 
 class TempUploadBarang(models.Model):
-    _name = 'sellout.upload.temp.barang'
+    _name = 'sellout.upload.detail.barang'
     _auto = False 
 
-    upload_id   = fields.Many2one('sellout.upload.temp',string='upload id')
+    upload_id   = fields.Many2one('sellout.upload.detail',string='upload id')
     company     = fields.Many2one(
         comodel_name='res.company',
         index=True,
@@ -783,11 +799,11 @@ class TempUploadBarang(models.Model):
     barang_id   = fields.Many2one(comodel_name='product.product', string='Link Barang')
 
     def init(self):
-        tools.drop_view_if_exists(self._cr,'sellout_upload_temp_barang')
+        tools.drop_view_if_exists(self._cr,'sellout_upload_detail_barang')
         self._cr.execute("""
-            CREATE OR REPLACE VIEW sellout_upload_temp_barang AS ( 
+            CREATE OR REPLACE VIEW sellout_upload_detail_barang AS ( 
              SELECT row_number() OVER () AS id, a.upload_id,a.company_id as company, a.kode_brg, a.nama_brg, b.barang_id 
-             FROM sellout_upload_temp a 
+             FROM sellout_upload_detail a 
                  LEFT OUTER JOIN sellout_link_barang b ON a.company_id = b.company_id and a.kode_brg = b.code 
              GROUP BY a.upload_id,a.company_id,a.kode_brg,a.nama_brg,b.barang_id
              ORDER BY a.upload_id,a.company_id,a.kode_brg,a.nama_brg,b.barang_id 
@@ -800,20 +816,4 @@ class TempUploadBarang(models.Model):
         return result
 
 
-     
-
-    @api.onchange("barang_id")
-    def _onchange_barang_id(self):
-        if self.barang_id:
-            # update sellout_link_barang             
-            self.env["sellout.link.barang"].search([
-                   ('company_id','=',self.company_id.id),
-                   ('code', '=', kode_brg ),
-                   ('name', '=', nama_brg )         
-            ]).write({'barang_id' : self.barang_id})            
-            self.env["sellout.upload.temp"].search([
-                   ('upload_id','=',self.upload_id),
-                   ('code', '=', kode_brg ),
-                   ('name', '=', nama_brg )         
-            ]).write({'barang_id' : self.barang_id})
-            self.flush()
+    

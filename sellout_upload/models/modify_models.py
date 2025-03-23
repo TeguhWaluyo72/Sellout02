@@ -26,13 +26,13 @@ class SaleOrderLine(models.Model):
 
     a_rp_hna   = fields.Float('a_rp_hna')
     rp_hna     = fields.Float('rp_hna')
-
     qty_extra  = fields.Float('qty_extra')
+    upload_id  = fields.Many2one('sellout.upload', 'upload')
+    upload_detail_id = fields.Integer('upload_detail_id')
     
-
 class SaleOrder(models.Model):
     _inherit  = 'sale.order'
 
-    upload_id = fields.Many2one('sellout.upload', 'upload')
+    upload_id   = fields.Many2one('sellout.upload', 'upload')
     salesman_id = fields.Many2one('sellout.salesman', 'Salesman')
     
