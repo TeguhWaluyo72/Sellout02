@@ -264,11 +264,10 @@ class SelloutUpload(models.Model):
                     "no_faktur"     : sheet.cell(row,11).value,
                     "kode_brg"      : xkode_brg,            
                     "nama_brg"      : xnama_brg,
-                    "qty"           : sheet.cell(row,14).value,
-                    "qty_jual"      : sheet.cell(row,15).value,
-                    "qty_extra"     : sheet.cell(row,16).value,
-                    "a_rp_jl"       : sheet.cell(row,17).value,
-                    "a_rp_disc"     : sheet.cell(row,18).value,            
+                    "qty_jual"      : sheet.cell(row,14).value,
+                    "qty_extra"     : sheet.cell(row,15).value,
+                    "a_rp_jl"       : sheet.cell(row,16).value,
+                    "a_rp_disc"     : sheet.cell(row,17).value,            
                     "a_rp_hna"      : 0,
                     "rp_jual"       : 0,
                     "rp_disc"       : 0,
@@ -466,6 +465,9 @@ class SelloutUpload(models.Model):
 
     def __upload_customer(self):
         # MANDATORY tapi tidak perlu lengkap wilayah & kategory pelanggan 
+        wilayah_external  = self.env.ref('sellout_base.ct_00_000')
+        kelompok_external = self.env.ref('sellout_base._categ_2_1')
+
         customers = self.env['sellout.upload.detail']._read_group( [
                   ('upload_id','=',self.id)
                 ], ['company_id','kode_ctm','nama_ctm','alamat','kelom_cust','kode_wilay','nama_wilay'],
@@ -478,7 +480,8 @@ class SelloutUpload(models.Model):
             kode_wilay = customer[5].rstrip()
             nama_wilay = customer[6]
             customer_id = fields.Many2one(comodel_name='res.partner', string='Customer' )
-
+            wilayah_id  = wilayah_external.id
+            kelompok_id = kelompok_external.id
 
             ketemu = self.env["sellout.link.customer"].search_count([
                    ('company_id','=',self.company_id.id),
@@ -487,24 +490,24 @@ class SelloutUpload(models.Model):
             ])
             if ketemu==0:
                 nvalid = 1
-
                 ketemu = self.env["sellout.link.customer.kelompok"].search_count([
                    ('company_id','=',self.company_id.id),
                    ('code', '=', kelom_cust ),
                 ])
 
-
                 if ketemu==0:
                     kelompok = self.env["sellout.link.customer.kelompok"].create({
                         'company_id' : self.company_id.id,
                         'code'       : kelom_cust ,
+                        'klp_cust_id': kelompok_id,
                     })
                 else:
                     kelompok = self.env["sellout.link.customer.kelompok"].search([
                     ('company_id','=',self.company_id.id),
                     ('code', '=', kelom_cust ),
                     ],limit=1)
-
+                    if not ( kelompok.id == 0 or kelompok.id == kelompok_external.id ):
+                        kelompok_id = kelompok.klp_cust_id.id
                 
                 ketemu = self.env["sellout.link.wilayah"].search_count([
                         ('company_id','=',self.company_id.id),
@@ -515,12 +518,15 @@ class SelloutUpload(models.Model):
                     wilayah = self.env["sellout.link.wilayah"].create({
                         'company_id' : self.company_id.id,
                         'code'       : kode_wilay ,
+                        'district_id': wilayah_id,
                     })
                 else:
                     wilayah = self.env["sellout.link.wilayah"].search([
                         ('company_id','=',self.company_id.id),
                         ('code', '=', kode_wilay ),
                         ],limit=1)
+                    if not ( wilayah.id==0 or wilayah.id == wilayah_external.id ):
+                        wilayah_id = wilayah.district_id.id
 
                 # create INCOMPLETE customer master             
 
@@ -535,9 +541,11 @@ class SelloutUpload(models.Model):
                     'ref'        : kode_ctm,
                     'name'       : nama_ctm,
                     'street'     : alamat,
-                    'district_id': wilayah.id,
-                    'industry_id': kelompok.id,
-                })              
+                    'district_id': wilayah_id,
+                    'industry_id': kelompok_id,
+                })          
+
+    
                 self.env["sellout.link.customer"].create({
                     'company_id' : self.company_id.id,
                     'code'       : kode_ctm,
@@ -549,14 +557,21 @@ class SelloutUpload(models.Model):
                     'customer_id': mcustomer.id                   
                 })
             else:
+
                 kelompok = self.env["sellout.link.customer.kelompok"].search([
                     ('company_id','=',self.company_id.id),
                     ('code', '=', kelom_cust ),
-                    ],limit=1)                
+                    ],limit=1)              
+                if not ( kelompok.id ==0 or kelompok.id == kelompok_external.id ):
+                    kelompok_id = kelompok.id
+
                 wilayah = self.env["sellout.link.wilayah"].search([
                     ('company_id','=',self.company_id.id),
                     ('code', '=', kode_wilay ),
                     ],limit=1)
+                if not ( wilayah.id==0 or wilayah.id == wilayah_external.id ):
+                    wilayah_id = wilayah.district_id
+
                 kode = self.env["sellout.link.customer"].search([
                     ('company_id','=',self.company_id.id),
                     ('code', '=', kode_ctm ),
@@ -566,23 +581,27 @@ class SelloutUpload(models.Model):
                     ('upload_id','=' ,self.id),
                     ('company_id','=',self.company_id.id),
                     ('kode_ctm', '=', kode_ctm ),
-                ])                   
+                ])          
                 temps.write({
                     'customer_id' : kode.customer_id 
                 })
+
                 customer = self.env["res.partner"].search([('id','=',kode.customer_id.id)],limit=1)
-                if customer.industry_id == 0:
-                    customer.write({
-                        'industry_id' : kelompok.klp_cust_id.id 
-                    })
-                if customer.district_id == 0:
-                    customer.write({
-                        'district_id' : wilayah.district_id.id
-                    })
+
+                if not ( kelompok_id == 0 or kelompok_id == kelompok_external.id ):
+                    if customer.industry_id == 0 or customer.industry_id == kelompok_external.id: 
+                        customer.write({
+                            'industry_id' : kelompok_id
+                        })
+
+                if not wilayah_id == 0 or wilayah_id == wilayah_external.id : 
+                    if customer.district_id == 0 or customer.district_id == wilayah_external.id : 
+                        customer.write({
+                            'district_id' : wilayah_id
+                        })
 
                 ## update data
                 #               
-
 
     def __post(self):
         tempuploads = self.env["sellout.upload.detail"].search([('upload_id','=',self.id)], order='tanggal,no_faktur,kode_ctm')
@@ -597,8 +616,9 @@ class SelloutUpload(models.Model):
                     tanggal   = t_upload.tanggal 
                     no_faktur = t_upload.no_faktur
                     kode_ctm  = t_upload.kode_ctm
-                    print(t_upload)
-                    print("data : " , t_upload.no_faktur, t_upload.tanggal , t_upload.kode_ctm , t_upload.customer_id , t_upload.kode_sls , t_upload.salesman_id )
+
+##                    print(t_upload)
+##                    print("data : " , t_upload.no_faktur, t_upload.tanggal , t_upload.kode_ctm , t_upload.customer_id , t_upload.kode_sls , t_upload.salesman_id )
                     so = self.env["sale.order"].create({
                         'name'          : t_upload.no_faktur , 
                         'company_id'    : t_upload.company_id,
