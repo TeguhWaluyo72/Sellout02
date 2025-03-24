@@ -124,8 +124,8 @@ class LinkKlpcustomer(models.Model):
         if 'klp_cust_id' in values and values.get('klp_cust_id'):
             klp_cust_id = values.get('klp_cust_id')
             linkcusts = self.env["sellout.link.customer"].search([
-                ('company_id','=',self.company_id.id),
-                ('kelompok' , '=', self.code )
+                ('company_id' , '=',self.company_id.id),
+                ('code', '=', self.code )
             ])
             linkcusts.write({
                 'klp_cust_id' : klp_cust_id

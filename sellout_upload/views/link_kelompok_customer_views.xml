@@ -10,6 +10,7 @@
                 <field name="company_id"/>
                 <field name="code"/>
                 <field name="name"/>
+                <field name="klp_cust_id"/>                
             </list>
         </field>
         </record>
@@ -26,6 +27,7 @@
                             <field name="company_id"/>
                             <field name="code"/>
                             <field name="name"/>
+                            <field name="klp_cust_id"/>                            
                         </group>
                     </sheet>
                 </form>
