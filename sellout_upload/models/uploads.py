@@ -103,7 +103,17 @@ class SelloutUpload(models.Model):
 
     def unlink(self):
         if self.state in ('post','done'):
-            raise UserError("Anda tidak bisa menghapus record ini ")
+            raise ValidationError("Anda tidak bisa menghapus record ini ")
+        
+        ## hapus data 
+        soline = self.env["sale.order.line"].search([('upload_id','=', self.id)])
+        soline.unlink()
+        so = self.env["sale.order"].search([('upload_id','=', self.id)])
+        so.unlink()
+
+        temp = self.env["sellout.upload.detail"].search([('upload_id','=', self.id)])
+        temp.unlink()
+
         return super(SelloutUpload, self).unlink()
 
 
@@ -176,7 +186,7 @@ class SelloutUpload(models.Model):
                     'params': {
                         'title': 'Warning Mandatory Link Table Empty',
                         'type': 'warning',
-                        'message': 'Link barang masih ada yang kosong',
+                        'message': 'Link Barang masih ada yang kosong',
                         'sticky': False,
                     }
                 }
@@ -184,7 +194,6 @@ class SelloutUpload(models.Model):
 
             self.env.cr.commit()
             ret_post      = self.__post()
-
 
             if ret_salesman==0 and ret_wilayah==0 and ret_customer==0:
                 notification = {
@@ -197,28 +206,38 @@ class SelloutUpload(models.Model):
                         'sticky': False,
                     }
                 }
+                self.write({'state' : 'post' })
                 return notification
-            else:
+            endif
 
+            self.env.cr.commit()
+            ret_post      = self.__post()
+            if ret_post ==0:
                 notification = {
                     'type': 'ir.actions.client',
                     'tag': 'display_notification',
                     'params': {
                         'title': 'INCOMPLETE POST',
                         'type': 'warning',
-                        'message': 'Link masih ada yang kosong , post incomplete',
+                        'message': 'Post incomplete',
                         'sticky': False,
                     }
                 }
+                self.write({'state' : 'upload' })
                 return notification
-
-
-            #ret_post     = self.__post()
-            #if (ret_barang==0 and ret_salesman==0 and ret_wilayah==0 and ret_customer==0 and ret_post==0):                
-            #    self.write({'state':'post'}) 
-            #else:
-            self.write({'state':'upload'}) 
-
+            else:                
+                notification = {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': 'INCOMPLETE UPLOAD',
+                        'type': 'warning',
+                        'message': 'Link masih ada yang kosong',
+                        'sticky': False,
+                    }
+                }
+                self.write({'state' : 'upload' })
+                return notification
 
 
     def __upload_load_xls(self,sheet):
@@ -292,6 +311,25 @@ class SelloutUpload(models.Model):
         except Exception as e:
             raise UserError(e)
             return 1
+
+
+        # check tanggal 
+        cek_tanggal = 0
+        tuploads = self.env["sellout.upload"].search([('company_id','=',self.company_id.id)])            
+        for tupload in tuploads:
+            if not tupload.id == self.id:
+                if self.date_start >= tupload.date_start and self.date_start <= tupload.date_end:                
+                    cek_tanggal = 1
+                    raise UserError('Periode Data pernah dimasukkan')
+
+
+                if self.date_end >= tupload.date_start and self.date_end <= tupload.date_end:
+                    cek_tanggal = 1
+                    raise UserError('Periode Data pernah dimasukkan')
+
+
+
+
         ## search date 
         ## self.date_start between date_start or date_end
         ## self.date_end   between date_start or date_end
@@ -466,7 +504,8 @@ class SelloutUpload(models.Model):
     def __upload_customer(self):
         # MANDATORY tapi tidak perlu lengkap wilayah & kategory pelanggan 
         wilayah_external  = self.env.ref('sellout_base.ct_00_000')
-        kelompok_external = self.env.ref('sellout_base._categ_2_1')
+        kelompok_external = self.env.ref('sellout_base._categ_0_0')
+        xret              = 0
 
         customers = self.env['sellout.upload.detail']._read_group( [
                   ('upload_id','=',self.id)
@@ -601,7 +640,8 @@ class SelloutUpload(models.Model):
                         })
 
                 ## update data
-                #               
+                #          
+        return xret  
 
     def __post(self):
         tempuploads = self.env["sellout.upload.detail"].search([('upload_id','=',self.id)], order='tanggal,no_faktur,kode_ctm')

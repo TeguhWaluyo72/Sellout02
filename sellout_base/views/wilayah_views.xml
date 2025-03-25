@@ -72,17 +72,13 @@
         <field name="model">res.district</field>
         <field name="arch" type="xml">
             <search>
-                <field name="code"/>
-                <field name="name"/>
-                <field name="typ"/>
-                <field name="state_id"/>
+                <field name="name" string="Name" 
+                    filter_domain = "['|', ('code','ilike',self),('name','ilike',self)]" />
             </search>
         </field>
     </record>
-
-    
-    <!-- Membuat View Form Course -->
-    
+   
+    <!-- Membuat View Form Course -->    
     <record id="wilayah_district_view_form" model="ir.ui.view">
         <field name="name">wilayah.district.form</field>
         <field name="model">res.district</field>
@@ -124,3 +120,5 @@
 
   </data>
 </odoo>
+
+
