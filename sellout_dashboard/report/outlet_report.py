@@ -45,6 +45,7 @@ class OutletReport(models.Model):
             """
             
     def _where_sale(self):
+
         return """
             l.display_type IS NULL"""
 
@@ -57,6 +58,9 @@ class OutletReport(models.Model):
 
     def _query(self):
         with_ = self._with_sale()
+        print("select : " , self._select_sale())
+        print("from : " , self._from_sale())
+        print("where : " , self._where_sale())
         return f"""
             SELECT {self._select_sale()}
             FROM {self._from_sale()}
