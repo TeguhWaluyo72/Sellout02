@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- model.name inherit form view -->
+    <record id="res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.inherit.view.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <field name="city" position="after">
+                <field name="district_id" />
+            </field>
+
+            <field name="company_id" position="after">
+                <field name="industry_id" />
+            </field>
+
+        </field>
+    </record>
+</odoo>

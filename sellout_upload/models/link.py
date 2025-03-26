@@ -24,8 +24,8 @@ class LinkWilayah(models.Model):
         if 'wilayah_id' in values and values.get('wilayah_id'):
             wilayah_id = values.get('wilayah_id')
             linkcusts = self.env["sellout.link.customer"].search([
-                ('company_id','=',self.company_id.id),
-                ('code' , '=', self.code )
+                ('company_id' ,'=',self.company_id.id),
+                ('kode_wilay' , '=', self.code )
             ])
             linkcusts.write({
                 'wilayah_id' :  wilayah_id
@@ -125,10 +125,10 @@ class LinkKlpcustomer(models.Model):
             klp_cust_id = values.get('klp_cust_id')
             linkcusts = self.env["sellout.link.customer"].search([
                 ('company_id' , '=',self.company_id.id),
-                ('code', '=', self.code )
+                ('kode_kelom', '=', self.code )
             ])
             linkcusts.write({
-                'klp_cust_id' : klp_cust_id
+                'industry_id' : klp_cust_id
             })
             for linkcust in linkcusts:
                 count = self.env["res.partner"].search_count([('id','=', linkcust.customer_id.id )])
@@ -137,6 +137,14 @@ class LinkKlpcustomer(models.Model):
                     cust.write({
                         'industry_id' : klp_cust_id
                     })
+    
+    def updateAll(self):
+        records = self.env["sellout.link.customer.kelompok"].read_group([],fields=['company_id','code','industry_id'])
+        for record in records:
+            print( " - " , record )
+            
+
+
 
     
     

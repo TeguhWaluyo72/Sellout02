@@ -6,6 +6,7 @@
         <field name="name">Link kelompok customer</field>
         <field name="model">sellout.link.customer.kelompok</field>
         <field name="arch" type="xml">
+            
             <list string="Link kelompok_customer">
                 <field name="company_id"/>
                 <field name="code"/>
